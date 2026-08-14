@@ -9,28 +9,55 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
 
-  <title>David H. Marie-Jeanne | Architect 331</title>
+  <title>David H. Marie-Jeanne — Registered Architect 331</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #000000;
+      --dark: #121212;
+      --card-bg: #1a1a1a;
+      --card-hover: #242424;
+      --text: #ffffff;
+      --text-muted: #cccccc;
+      --text-dim: #888888;
+      --accent: #8b7355;
+      --accent-light: #b8a58a;
+      --border: rgba(255, 255, 255, 0.2);
+      --border-light: rgba(255,255,255,0.08);
     }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
     body {
-      background-color: #000000;
-      color: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--black);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ════════════════════════════════════════
+       CARD HERO SECTION (Top Screen)
+       ════════════════════════════════════════ */
+    .hero-section {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      padding: 16px;
+      padding: 24px 16px;
+      position: relative;
     }
+
     .card-container {
       width: 100%;
       max-width: 380px;
-      aspect-ratio: 1.58 / 1; /* Standard Business Card Aspect Ratio */
+      aspect-ratio: 1.58 / 1;
       border: 1.5px solid #ffffff;
       border-radius: 16px;
       padding: 22px;
@@ -38,37 +65,35 @@
       flex-direction: column;
       justify-content: space-between;
       position: relative;
-      background-color: #000000;
+      background-color: var(--black);
       box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
     }
-    /* Top Left Header */
-    .header {
+
+    .card-header {
       text-align: left;
     }
-    .header h1 {
+    .card-header h1 {
       font-size: 1.6rem;
       font-weight: 300;
       letter-spacing: 3px;
       line-height: 1.1;
       text-transform: uppercase;
     }
-    .header .reg {
+    .card-header .reg {
       font-size: 1rem;
       font-weight: 300;
       letter-spacing: 1.5px;
       margin-top: 4px;
     }
 
-    /* Middle / Interactive Status */
     .status-tag {
       font-size: 0.62rem;
       letter-spacing: 1.2px;
       text-transform: uppercase;
-      color: #888888;
+      color: var(--text-dim);
       margin-top: 6px;
     }
 
-    /* Bottom Right Info */
     .footer-info {
       text-align: right;
       align-self: flex-end;
@@ -85,7 +110,7 @@
       font-size: 0.72rem;
       font-weight: 300;
       letter-spacing: 1px;
-      color: #cccccc;
+      color: var(--text-muted);
       margin-top: 2px;
     }
     .contact-line a {
@@ -93,7 +118,6 @@
       text-decoration: none;
     }
 
-    /* Main CTA: Add to Contacts Button */
     .btn-vcard {
       display: inline-block;
       margin-top: 10px;
@@ -114,7 +138,7 @@
       color: #ffffff;
     }
 
-    /* Architectural Scale Ruler Graphics */
+    /* Scale Ruler */
     .ruler {
       position: absolute;
       bottom: 6px;
@@ -125,10 +149,7 @@
       align-items: flex-end;
       justify-content: space-between;
     }
-    .tick {
-      width: 1px;
-      background-color: #ffffff;
-    }
+    .tick { width: 1px; background-color: #ffffff; }
     .tick.major { height: 14px; }
     .tick.medium { height: 9px; }
     .tick.minor { height: 4px; }
@@ -140,68 +161,494 @@
       height: 1px;
       background-color: #ffffff;
     }
+
+    /* Scroll Indicator Below Card */
+    .scroll-hint {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-dim);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .scroll-hint:hover { color: #ffffff; }
+    .scroll-arrow {
+      font-size: 1rem;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(6px); }
+      60% { transform: translateY(3px); }
+    }
+
+    /* ════════════════════════════════════════
+       CV SECTIONS
+       ════════════════════════════════════════ */
+    .section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Services */
+    .services-section {
+      background: var(--dark);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .services-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .service-card {
+      padding: 1.5rem 1.8rem;
+      border: 1px solid var(--border-light);
+      background: var(--card-bg);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .service-card:hover {
+      border-color: var(--accent);
+      background: var(--card-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.3);
+    }
+
+    .service-icon {
+      font-size: 1.3rem;
+      color: var(--accent);
+      flex-shrink: 0;
+      width: 2rem;
+      text-align: center;
+    }
+
+    .service-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    /* Profile */
+    .profile-text {
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+      max-width: 720px;
+    }
+
+    .profile-text strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 3rem; }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), var(--border-light));
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 3rem;
+    }
+
+    .timeline-item:last-child { padding-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -3rem;
+      top: 0.35rem;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--black);
+      border: 2px solid var(--accent);
+      transform: translateX(-5px);
+    }
+
+    .timeline-item.current .timeline-dot {
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(139,115,85,0.2);
+    }
+
+    .timeline-duration {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 0.35rem;
+    }
+
+    .timeline-role {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.15rem;
+    }
+
+    .timeline-company {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--text-dim);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* Education */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .edu-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-light);
+      padding: 2rem 2rem 2rem 2.5rem;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .edu-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+
+    .edu-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--accent);
+    }
+
+    .edu-degree {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .edu-school {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      margin-bottom: 0.5rem;
+    }
+
+    .edu-years {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+    }
+
+    /* Project Types */
+    .project-types-section {
+      background: var(--dark);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .project-types-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .type-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .type-card {
+      padding: 1.4rem 1.8rem;
+      border: 1px solid var(--border-light);
+      background: var(--card-bg);
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .type-card:hover {
+      border-color: var(--accent);
+      background: var(--card-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.3);
+    }
+
+    .type-card-icon {
+      font-size: 1.2rem;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .type-card-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* Footer */
+    .profile-footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .profile-footer .reg-line {
+      margin-top: 0.3rem;
+      color: var(--accent-light);
+    }
+
+    /* Media Queries */
+    @media (max-width: 900px) {
+      .services-grid, .type-cards { grid-template-columns: repeat(2, 1fr); }
+      .section { padding: 4rem 1.5rem; }
+      .services-inner, .project-types-inner { padding: 3rem 1.5rem; }
+    }
+
+    @media (max-width: 640px) {
+      html { font-size: 15px; }
+      .services-grid, .type-cards { grid-template-columns: 1fr; gap: 1rem; }
+      .service-card, .type-card { padding: 1.2rem 1.4rem; }
+      .timeline { padding-left: 2rem; }
+      .timeline-dot { left: -2rem; transform: translateX(-4.5px); }
+      .timeline-item { padding-bottom: 2.5rem; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .edu-card { padding: 1.5rem 1.5rem 1.5rem 2rem; }
+      .section { padding: 3rem 1.25rem; }
+      .services-inner, .project-types-inner { padding: 2.5rem 1.25rem; }
+      .profile-text { font-size: 1.05rem; line-height: 1.8; }
+    }
+
+    @media (max-width: 380px) {
+      html { font-size: 14px; }
+      .section { padding: 2.5rem 1rem; }
+      .services-inner, .project-types-inner { padding: 2rem 1rem; }
+      .service-card, .type-card { padding: 1rem 1.2rem; }
+    }
+
+    @media (min-width: 1200px) {
+      .services-grid { grid-template-columns: repeat(4, 1fr); }
+      .type-cards { grid-template-columns: repeat(3, 1fr); }
+    }
   </style>
 </head>
 <body>
 
-  <div class="card-container">
-    
-    <!-- Top Left -->
-    <div class="header">
-      <h1>ARCHITECT</h1>
-      <div class="reg">331</div>
-      <div class="status-tag">🌐 Interactive 3D Model Launching Soon</div>
-    </div>
-
-    <!-- Bottom Right -->
-    <div class="footer-info">
-      <div class="name">DAVID H. MARIE-JEANNE</div>
-      <div class="contact-line"><a href="tel:+23054293170">+230 5429 3170</a></div>
-      <div class="contact-line"><a href="mailto:davidhmj@gmail.com">davidhmj@gmail.com</a></div>
+  <!-- ════════ HERO CARD ════════ -->
+  <header class="hero-section">
+    <div class="card-container">
       
-      <!-- Primary Action -->
-      <a href="contact.vcf" class="btn-vcard">+ Add to Contacts</a>
+      <div class="card-header">
+        <h1>ARCHITECT</h1>
+        <div class="reg">331</div>
+        <div class="status-tag">🌐 Interactive 3D Model Launching Soon</div>
+      </div>
+
+      <div class="footer-info">
+        <div class="name">DAVID H. MARIE-JEANNE</div>
+        <div class="contact-line"><a href="tel:+23054293170">+230 5429 3170</a></div>
+        <div class="contact-line"><a href="mailto:davidhmj@gmail.com">davidhmj@gmail.com</a></div>
+        
+        <a href="contact.vcf" class="btn-vcard">+ Add to Contacts</a>
+      </div>
+
+      <!-- Scale Ruler Graphic -->
+      <div class="ruler-base"></div>
+      <div class="ruler">
+        <div class="tick major"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick medium"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick major"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick medium"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick major"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick medium"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick major"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick medium"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick major"></div>
+      </div>
     </div>
 
-    <!-- Architectural Scale Ruler -->
-    <div class="ruler-base"></div>
-    <div class="ruler">
-      <div class="tick major"></div>
-      <div class="tick minor"></div>
-      <div class="tick minor"></div>
-      <div class="tick minor"></div>
-      <div class="tick medium"></div>
-      <div class="tick minor"></div>
-      <div class="tick minor"></div>
-      <div class="tick minor"></div>
-      <div class="tick major"></div>
-      <div class="tick minor"></div>
-      <div class="tick minor"></div>
-      <div class="tick minor"></div>
-      <div class="tick medium"></div>
-      <div class="tick minor"></div>
-      <div class="tick minor"></div>
-      <div class="tick minor"></div>
-      <div class="tick major"></div>
-      <div class="tick minor"></div>
-      <div class="tick minor"></div>
-      <div class="tick minor"></div>
-      <div class="tick medium"></div>
-      <div class="tick minor"></div>
-      <div class="tick minor"></div>
-      <div class="tick minor"></div>
-      <div class="tick major"></div>
-      <div class="tick minor"></div>
-      <div class="tick minor"></div>
-      <div class="tick minor"></div>
-      <div class="tick medium"></div>
-      <div class="tick minor"></div>
-      <div class="tick minor"></div>
-      <div class="tick minor"></div>
-      <div class="tick major"></div>
-    </div>
+    <a href="#profile" class="scroll-hint">
+      <span>Scroll for Resume</span>
+      <span class="scroll-arrow">↓</span>
+    </a>
+  </header>
 
+  <!-- ════════ PROFILE ════════ -->
+  <section class="section" id="profile">
+    <div class="section-label">Profile</div>
+    <p class="profile-text">
+      <strong>Senior Registered Architect with over 20 years</strong> of international and local experience
+      across residential, commercial, institutional, industrial, and landscape projects.
+      Skilled at translating complex spatial requirements into practical, regulatory-compliant
+      solutions&mdash;overseeing projects seamlessly through <strong>all work stages</strong> from
+      master planning and concept design to site supervision and handover.
+    </p>
+  </section>
+
+  <!-- ════════ SERVICES ════════ -->
+  <div class="services-section">
+    <div class="services-inner">
+      <div class="section-label">Services</div>
+      <div class="services-grid">
+        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Master Planning</div></div>
+        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Concept Design</div></div>
+        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Schematic Design</div></div>
+        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Design Development</div></div>
+        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Construction Documentation</div></div>
+        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Tender &amp; Contract Administration</div></div>
+        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Site Supervision</div></div>
+        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Project Handover</div></div>
+      </div>
+    </div>
   </div>
+
+  <!-- ════════ PROJECT TYPES ════════ -->
+  <div class="project-types-section">
+    <div class="project-types-inner">
+      <div class="section-label">Project Types</div>
+      <div class="type-cards">
+        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Residential</div></div>
+        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Commercial</div></div>
+        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Institutional</div></div>
+        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Industrial</div></div>
+        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Landscape Projects</div></div>
+        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Interior Design &amp; Furniture Modelling</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ EXPERIENCE ════════ -->
+  <section class="section">
+    <div class="section-label">Professional Experience</div>
+    <div class="timeline">
+
+      <div class="timeline-item current">
+        <div class="timeline-dot"></div>
+        <div class="timeline-duration">2026 &ndash; Present</div>
+        <div class="timeline-role">Collaborating Architect</div>
+        <div class="timeline-company">SHELTER STUDIO Ltd, Mauritius</div>
+        <div class="timeline-desc">Managing full architectural stages across residential, commercial, institutional, industrial, landscape, and mixed-use developments in Mauritius.</div>
+      </div>
+
+      <div class="timeline-item current">
+        <div class="timeline-dot"></div>
+        <div class="timeline-duration">2022 &ndash; Present</div>
+        <div class="timeline-role">Collaborating Architect</div>
+        <div class="timeline-company">VISIO Architecture Ltd, Mauritius</div>
+        <div class="timeline-desc">Managing full architectural stages across residential, commercial, institutional, industrial, landscape, and mixed-use developments in Mauritius.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-duration">2008 &ndash; 2022</div>
+        <div class="timeline-role">Senior Architect / Project Manager</div>
+        <div class="timeline-company">L&rsquo;Occitane Group, Moscow, Russia</div>
+        <div class="timeline-desc">Led retail and commercial architecture portfolios across major international markets over a 14-year tenure.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-duration">2006 &ndash; 2008</div>
+        <div class="timeline-role">Architect</div>
+        <div class="timeline-company">Absida Architects, Moscow, Russia</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-duration">2004 &ndash; 2006</div>
+        <div class="timeline-role">Architect</div>
+        <div class="timeline-company">Architectural Bureau PLN, Moscow, Russia</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-duration">2002 &ndash; 2004</div>
+        <div class="timeline-role">Architect</div>
+        <div class="timeline-company">Architectural Lab Olga &amp; Andrei, Moscow, Russia</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════ EDUCATION ════════ -->
+  <section class="section">
+    <div class="section-label">Education &amp; Registration</div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-degree">Master of Architecture (M.Arch)</div>
+        <div class="edu-school">Peoples&rsquo; Friendship University of Russia (RUDN)</div>
+        <div class="edu-years">2002 &ndash; 2004</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">Bachelor of Architecture (B.Arch)</div>
+        <div class="edu-school">Peoples&rsquo; Friendship University of Russia (RUDN)</div>
+        <div class="edu-years">1997 &ndash; 2002</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ FOOTER ════════ -->
+  <footer class="profile-footer">
+    Professional Architects Council &middot; Reg. No. 331
+    <div class="reg-line">Republic of Mauritius</div>
+  </footer>
 
 </body>
 </html>
