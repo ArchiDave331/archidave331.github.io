@@ -15,6 +15,7 @@
       color: #ffffff;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
@@ -26,7 +27,7 @@
       aspect-ratio: 1.58 / 1; /* Standard Business Card Aspect Ratio */
       border: 1.5px solid #ffffff;
       border-radius: 16px;
-      padding: 24px;
+      padding: 22px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -39,59 +40,81 @@
       text-align: left;
     }
     .header h1 {
-      font-size: 1.7rem;
+      font-size: 1.6rem;
       font-weight: 300;
       letter-spacing: 3px;
       line-height: 1.1;
       text-transform: uppercase;
     }
     .header .reg {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 300;
       letter-spacing: 1.5px;
       margin-top: 4px;
     }
+
+    /* Middle / Interactive Status */
+    .status-tag {
+      font-size: 0.62rem;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #888888;
+      margin-top: 6px;
+    }
+
     /* Bottom Right Info */
     .footer-info {
       text-align: right;
       align-self: flex-end;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
-    .vcard-link {
-      display: inline-block;
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 0.85rem;
+    .name {
+      font-size: 0.82rem;
       font-weight: 500;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      margin-bottom: 10px;
-      transition: opacity 0.2s ease;
-    }
-    .vcard-link:hover {
-      opacity: 0.7;
+      margin-bottom: 4px;
     }
     .contact-line {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 300;
       letter-spacing: 1px;
-      color: #e0e0e0;
-      margin-top: 3px;
+      color: #cccccc;
+      margin-top: 2px;
     }
     .contact-line a {
       color: #ffffff;
       text-decoration: none;
     }
-    .contact-line a:hover {
-      text-decoration: underline;
+
+    /* Main CTA: Add to Contacts Button */
+    .btn-vcard {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 12px;
+      border: 1px solid #ffffff;
+      border-radius: 4px;
+      background: #ffffff;
+      color: #000000;
+      text-decoration: none;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
     }
-    /* Architectural Ruler Graphics at Bottom */
+    .btn-vcard:hover {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    /* Architectural Scale Ruler Graphics */
     .ruler {
       position: absolute;
-      bottom: 8px;
+      bottom: 6px;
       left: 16px;
       right: 16px;
-      height: 18px;
+      height: 16px;
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
@@ -100,18 +123,12 @@
       width: 1px;
       background-color: #ffffff;
     }
-    .tick.major {
-      height: 16px;
-    }
-    .tick.medium {
-      height: 10px;
-    }
-    .tick.minor {
-      height: 5px;
-    }
+    .tick.major { height: 14px; }
+    .tick.medium { height: 9px; }
+    .tick.minor { height: 4px; }
     .ruler-base {
       position: absolute;
-      bottom: 8px;
+      bottom: 6px;
       left: 16px;
       right: 16px;
       height: 1px;
@@ -127,14 +144,17 @@
     <div class="header">
       <h1>ARCHITECT</h1>
       <div class="reg">331</div>
+      <div class="status-tag">🌐 Interactive 3D Model Launching Soon</div>
     </div>
 
     <!-- Bottom Right -->
     <div class="footer-info">
-      <!-- Tapping your name triggers the .vcf contact download -->
-      <a href="contact.vcf" class="vcard-link" title="Save Contact Card">DAVID H. MARIE-JEANNE</a>
+      <div class="name">DAVID H. MARIE-JEANNE</div>
       <div class="contact-line"><a href="tel:+23054293170">+230 5429 3170</a></div>
       <div class="contact-line"><a href="mailto:davidhmj@gmail.com">davidhmj@gmail.com</a></div>
+      
+      <!-- Primary Action -->
+      <a href="contact.vcf" class="btn-vcard">+ Add to Contacts</a>
     </div>
 
     <!-- Architectural Scale Ruler -->
