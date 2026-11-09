@@ -16,17 +16,15 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --black: #000000;
-      --dark: #121212;
-      --card-bg: #1a1a1a;
-      --card-hover: #242424;
+      --black: #050505;
+      --surface: #111111;
+      --surface-hover: #1a1a1a;
       --text: #ffffff;
-      --text-muted: #cccccc;
-      --text-dim: #888888;
-      --accent: #8b7355;
-      --accent-light: #b8a58a;
-      --border: rgba(255, 255, 255, 0.2);
-      --border-light: rgba(255,255,255,0.08);
+      --text-muted: #b0b0b0;
+      --text-dim: #777777;
+      --accent: #c5b395; /* Elegant architectural warm bronze/gold */
+      --border: rgba(255, 255, 255, 0.12);
+      --border-hover: rgba(197, 179, 149, 0.5);
     }
 
     html { scroll-behavior: smooth; font-size: 16px; }
@@ -42,7 +40,7 @@
     }
 
     /* ════════════════════════════════════════
-       CARD HERO SECTION (Top Screen)
+       HERO & TOP SECTION
        ════════════════════════════════════════ */
     .hero-section {
       min-height: 100vh;
@@ -50,142 +48,145 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 24px 16px;
+      padding: 4rem 1.5rem 2rem 1.5rem;
       position: relative;
     }
 
-    .card-container {
+    .hero-container {
       width: 100%;
-      max-width: 380px;
-      aspect-ratio: 1.58 / 1;
-      border: 1.5px solid #ffffff;
-      border-radius: 16px;
-      padding: 22px;
+      max-width: 440px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      background-color: var(--black);
-      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+      gap: 2.5rem;
+      align-items: center;
+      text-align: center;
     }
 
-    .card-header {
-      text-align: left;
-    }
-    .card-header h1 {
-      font-size: 1.6rem;
-      font-weight: 300;
-      letter-spacing: 3px;
-      line-height: 1.1;
-      text-transform: uppercase;
-    }
-    .card-header .reg {
-      font-size: 1rem;
-      font-weight: 300;
+    /* 1. Refined Brand Slogan */
+    .brand-slogan {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--accent);
       letter-spacing: 1.5px;
-      margin-top: 4px;
+      line-height: 1.5;
+      max-width: 380px;
     }
 
-    .status-tag {
-      font-size: 0.62rem;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-top: 6px;
-    }
-
-    .footer-info {
-      text-align: right;
-      align-self: flex-end;
-      margin-bottom: 18px;
-    }
-    .name {
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-    .contact-line {
-      font-size: 0.72rem;
-      font-weight: 300;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-    .contact-line a {
-      color: #ffffff;
-      text-decoration: none;
-    }
-
-    .btn-vcard {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 6px 12px;
-      border: 1px solid #ffffff;
-      border-radius: 4px;
-      background: #ffffff;
-      color: #000000;
-      text-decoration: none;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      transition: all 0.2s ease;
-    }
-    .btn-vcard:hover {
-      background: #000000;
-      color: #ffffff;
-    }
-
-    /* Scale Ruler */
-    .ruler {
-      position: absolute;
-      bottom: 6px;
-      left: 16px;
-      right: 16px;
-      height: 16px;
+    /* 2. Architectural Brand Block (Replacing old card box) */
+    .brand-identity {
       display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 6px;
     }
-    .tick { width: 1px; background-color: #ffffff; }
-    .tick.major { height: 14px; }
-    .tick.medium { height: 9px; }
-    .tick.minor { height: 4px; }
-    .ruler-base {
-      position: absolute;
-      bottom: 6px;
-      left: 16px;
-      right: 16px;
-      height: 1px;
-      background-color: #ffffff;
+    .brand-identity h1 {
+      font-size: 2rem;
+      font-weight: 300;
+      letter-spacing: 5px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .brand-identity .reg-badge {
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 3px;
+      color: var(--text-muted);
     }
 
-    /* Scroll Indicator Below Card */
+    /* 3. Luxury Unified Action Buttons */
+    .action-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .btn-architectural {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 16px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-architectural:hover {
+      background: var(--surface-hover);
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Distinct highlight for WhatsApp conversion button */
+    .btn-architectural.whatsapp {
+      border-color: rgba(197, 179, 149, 0.3);
+      background: linear-gradient(to bottom, #141414, #0d0d0d);
+    }
+    .btn-architectural.whatsapp:hover {
+      border-color: var(--accent);
+    }
+
+    .btn-icon {
+      font-size: 1rem;
+    }
+
+    /* 4. Video Player Wrapper (1400x1080 aspect ratio) */
+    .video-section-wrapper {
+      width: 100%;
+      max-width: 720px;
+      margin: 3rem auto 0 auto;
+      padding: 0 1rem;
+    }
+
+    .video-wrapper {
+      width: 100%;
+      aspect-ratio: 1400 / 1080;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Scroll Indicator */
     .scroll-hint {
-      margin-top: 2rem;
+      margin-top: 3rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 6px;
       color: var(--text-dim);
-      font-size: 0.7rem;
-      letter-spacing: 2px;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
       text-transform: uppercase;
       text-decoration: none;
       transition: color 0.2s;
     }
-    .scroll-hint:hover { color: #ffffff; }
-    .scroll-arrow {
-      font-size: 1rem;
-      animation: bounce 2s infinite;
-    }
+    .scroll-hint:hover { color: var(--text); }
+    .scroll-arrow { font-size: 0.9rem; animation: bounce 2s infinite; }
 
     @keyframes bounce {
       0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(6px); }
-      60% { transform: translateY(3px); }
+      40% { transform: translateY(5px); }
+      60% { transform: translateY(2px); }
     }
 
     /* ════════════════════════════════════════
@@ -202,13 +203,12 @@
       font-weight: 600;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--accent-light);
+      color: var(--accent);
       margin-bottom: 1.5rem;
       display: flex;
       align-items: center;
       gap: 1rem;
     }
-
     .section-label::after {
       content: '';
       flex: 1;
@@ -216,69 +216,85 @@
       background: var(--border);
     }
 
+    /* Video Archive Section */
+    .video-archive-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .video-archive-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .archive-item {
+      background: var(--black);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .archive-item:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .archive-video-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+      object-fit: cover;
+    }
+    .archive-info { padding: 1.2rem; }
+    .archive-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.3rem; color: var(--text); }
+    .archive-desc { font-size: 0.75rem; color: var(--text-dim); }
+
     /* Services */
     .services-section {
-      background: var(--dark);
-      border-top: 1px solid var(--border-light);
-      border-bottom: 1px solid var(--border-light);
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
-
     .services-inner {
       max-width: 960px;
       margin: 0 auto;
       padding: 4rem 2rem;
     }
-
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.25rem;
     }
-
     .service-card {
-      padding: 1.5rem 1.8rem;
-      border: 1px solid var(--border-light);
-      background: var(--card-bg);
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      background: var(--black);
       transition: all 0.3s ease;
       display: flex;
       align-items: center;
       gap: 1rem;
+      border-radius: 4px;
     }
-
     .service-card:hover {
       border-color: var(--accent);
-      background: var(--card-hover);
+      background: var(--surface-hover);
       transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(0,0,0,0.3);
     }
+    .service-icon { font-size: 1.1rem; color: var(--accent); flex-shrink: 0; width: 1.5rem; text-align: center; }
+    .service-name { font-size: 0.9rem; font-weight: 500; color: var(--text); line-height: 1.4; }
 
-    .service-icon {
-      font-size: 1.3rem;
-      color: var(--accent);
-      flex-shrink: 0;
-      width: 2rem;
-      text-align: center;
-    }
-
-    .service-name {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-      line-height: 1.4;
-    }
-
-    /* Profile */
+    /* Profile text */
     .profile-text {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       line-height: 1.9;
       color: var(--text-muted);
       max-width: 720px;
-      font-weight: 400;
+      font-weight: 300;
     }
 
     /* Timeline */
-    .timeline { position: relative; padding-left: 3rem; }
-
+    .timeline { position: relative; padding-left: 2.5rem; }
     .timeline::before {
       content: '';
       position: absolute;
@@ -286,62 +302,42 @@
       top: 0;
       bottom: 0;
       width: 1px;
-      background: linear-gradient(to bottom, var(--accent), var(--border-light));
+      background: linear-gradient(to bottom, var(--accent), var(--border));
     }
-
-    .timeline-item {
-      position: relative;
-      padding-bottom: 3rem;
-    }
-
+    .timeline-item { position: relative; padding-bottom: 3rem; }
     .timeline-item:last-child { padding-bottom: 0; }
-
     .timeline-dot {
       position: absolute;
-      left: -3rem;
-      top: 0.35rem;
-      width: 11px;
-      height: 11px;
+      left: -2.5rem;
+      top: 0.3rem;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background: var(--black);
       border: 2px solid var(--accent);
-      transform: translateX(-5px);
+      transform: translateX(-4.5px);
     }
-
     .timeline-item.current .timeline-dot {
       background: var(--accent);
-      box-shadow: 0 0 0 4px rgba(139,115,85,0.2);
+      box-shadow: 0 0 0 4px rgba(197, 179, 149, 0.15);
     }
-
     .timeline-duration {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--accent-light);
-      margin-bottom: 0.35rem;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
     }
-
-    .timeline-role {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.15rem;
-    }
-
+    .timeline-role { font-size: 1.05rem; font-weight: 600; color: var(--text); margin-bottom: 0.1rem; }
     .timeline-company {
       font-family: 'Playfair Display', serif;
       font-style: italic;
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: var(--text-dim);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
-
-    .timeline-desc {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
+    .timeline-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; }
 
     /* Education */
     .edu-grid {
@@ -349,174 +345,125 @@
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
     }
-
     .edu-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-light);
-      padding: 2rem 2rem 2rem 2.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2rem;
       position: relative;
-      transition: transform 0.3s, box-shadow 0.3s;
+      border-radius: 4px;
+      transition: transform 0.3s;
     }
-
-    .edu-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-    }
-
-    .edu-card::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: var(--accent);
-    }
-
-    .edu-degree {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.3rem;
-    }
-
+    .edu-card:hover { transform: translateY(-2px); border-color: var(--border-hover); }
+    .edu-degree { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.3rem; }
     .edu-school {
       font-family: 'Playfair Display', serif;
       font-style: italic;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: var(--text-dim);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
-
     .edu-years {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--accent-light);
+      color: var(--accent);
     }
 
     /* Project Types */
     .project-types-section {
-      background: var(--dark);
-      border-top: 1px solid var(--border-light);
-      border-bottom: 1px solid var(--border-light);
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
-
     .project-types-inner {
       max-width: 960px;
       margin: 0 auto;
       padding: 4rem 2rem;
     }
-
     .type-cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1.25rem;
     }
-
     .type-card {
-      padding: 1.4rem 1.8rem;
-      border: 1px solid var(--border-light);
-      background: var(--card-bg);
+      padding: 1.2rem 1.5rem;
+      border: 1px solid var(--border);
+      background: var(--black);
       transition: all 0.3s;
       display: flex;
       align-items: center;
       gap: 1rem;
+      border-radius: 4px;
     }
-
     .type-card:hover {
       border-color: var(--accent);
-      background: var(--card-hover);
+      background: var(--surface-hover);
       transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(0,0,0,0.3);
     }
-
-    .type-card-icon {
-      font-size: 1.2rem;
-      color: var(--accent);
-      flex-shrink: 0;
-    }
-
-    .type-card-name {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text);
-    }
+    .type-card-icon { font-size: 1rem; color: var(--accent); flex-shrink: 0; }
+    .type-card-name { font-size: 0.9rem; font-weight: 500; color: var(--text); }
 
     /* Footer */
     .profile-footer {
       text-align: center;
       padding: 3rem 2rem;
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--text-dim);
     }
+    .profile-footer .reg-line { margin-top: 0.4rem; color: var(--accent); }
 
-    .profile-footer .reg-line {
-      margin-top: 0.3rem;
-      color: var(--accent-light);
-    }
-
-    /* Media Queries */
     @media (max-width: 900px) {
       .services-grid, .type-cards { grid-template-columns: repeat(2, 1fr); }
       .section { padding: 4rem 1.5rem; }
-      .services-inner, .project-types-inner { padding: 3rem 1.5rem; }
     }
-
     @media (max-width: 640px) {
       html { font-size: 15px; }
       .services-grid, .type-cards { grid-template-columns: 1fr; gap: 1rem; }
-      .service-card, .type-card { padding: 1.2rem 1.4rem; }
-      .timeline { padding-left: 2rem; }
-      .timeline-dot { left: -2rem; transform: translateX(-4.5px); }
-      .timeline-item { padding-bottom: 2.5rem; }
-      .edu-grid { grid-template-columns: 1fr; }
-      .edu-card { padding: 1.5rem 1.5rem 1.5rem 2rem; }
-      .section { padding: 3rem 1.25rem; }
-      .services-inner, .project-types-inner { padding: 2.5rem 1.25rem; }
-      .profile-text { font-size: 1.05rem; line-height: 1.8; }
-    }
-
-    @media (max-width: 380px) {
-      html { font-size: 14px; }
-      .section { padding: 2.5rem 1rem; }
-      .services-inner, .project-types-inner { padding: 2rem 1rem; }
-      .service-card, .type-card { padding: 1rem 1.2rem; }
-    }
-
-    @media (min-width: 1200px) {
-      .services-grid { grid-template-columns: repeat(4, 1fr); }
-      .type-cards { grid-template-columns: repeat(3, 1fr); }
     }
   </style>
 </head>
 <body>
 
-  <!-- ════════ HERO CARD ════════ -->
+  <!-- ════════ TOP HERO SECTION ════════ -->
   <header class="hero-section">
-    <div class="card-container">
+    <div class="hero-container">
       
-      <div class="card-header">
-        <h1>ARCHITECT</h1>
-        <div class="reg">331</div>
-        <div class="status-tag">🌐 Interactive 3D Model Launching Soon</div>
+      <!-- 1. BRAND SLOGAN -->
+      <div class="brand-slogan">
+        Designed with vision. Planned with precision. Built to last.
       </div>
 
-      <div class="footer-info">
-        <div class="name">DAVID H. MARIE-JEANNE</div>
-        <div class="contact-line"><a href="tel:+23054293170">+230 5429 3170</a></div>
-        <div class="contact-line"><a href="mailto:davidhmj@gmail.com">davidhmj@gmail.com</a></div>
-        
-        <a href="contact.vcf" class="btn-vcard">+ Add to Contacts</a>
+      <!-- 2. CLEAN ARCHITECT BRAND IDENTITY -->
+      <div class="brand-identity">
+        <h1>Architect</h1>
+        <div class="reg-badge">331</div>
       </div>
 
-      <!-- Scale Ruler Graphic -->
-      <div class="ruler-base"></div>
-      <div class="ruler">
-        <div class="tick major"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick medium"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick major"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick medium"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick major"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick medium"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick major"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick medium"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick minor"></div><div class="tick major"></div>
+      <!-- 3. UNIFIED ARCHITECTURAL ACTION BUTTONS -->
+      <div class="action-group">
+        <a href="contact.vcf" class="btn-architectural">
+          <span class="btn-icon">＋</span> Add to Contacts
+        </a>
+        <a href="https://wa.me/23054293170?text=Hello%20,%20I%20would%20like%20to%20discuss%20an%20architectural%20project%20with%20you." target="_blank" class="btn-architectural whatsapp">
+          <span class="btn-icon">💬</span> Discuss Your Project (WhatsApp)
+        </a>
+        <a href="mailto:davidhmj@gmail.com" class="btn-architectural">
+          <span class="btn-icon">✉️</span> Send an Email
+        </a>
+      </div>
+
+    </div>
+
+    <!-- 4. FEATURED VIDEO SECTION -->
+    <div class="video-section-wrapper">
+      <div class="video-wrapper">
+        <video controls autoplay muted playsinline>
+          <source src="video1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
 
@@ -639,6 +586,24 @@
       </div>
     </div>
   </section>
+
+  <!-- ════════ VIDEO ARCHIVE ════════ -->
+  <div class="video-archive-section">
+    <div class="video-archive-inner">
+      <div class="section-label">Video Archive &amp; Insights</div>
+      <div class="archive-grid">
+        <div class="archive-item">
+          <video class="archive-video-thumb" controls preload="metadata">
+            <source src="video2.mp4" type="video/mp4">
+          </video>
+          <div class="archive-info">
+            <div class="archive-title">Architectural Perspective &amp; Process</div>
+            <div class="archive-desc">Exploring workflow, detailing, and structural precision.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ════════ FOOTER ════════ -->
   <footer class="profile-footer">
