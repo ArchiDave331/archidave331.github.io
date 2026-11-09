@@ -130,15 +130,16 @@
 
     .btn-icon { font-size: 0.9rem; }
 
+    /* UNIFIED VIDEO SIZES (16:9 widescreen, max-width 720px) */
     .video-section-wrapper {
       width: 100%;
-      max-width: 440px;
-      margin: 0.5rem 0;
+      max-width: 720px;
+      margin: 0.75rem 0;
     }
 
     .video-wrapper {
       width: 100%;
-      aspect-ratio: 1400 / 1080;
+      aspect-ratio: 16 / 9;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 8px;
@@ -360,7 +361,7 @@
     }
     .archive-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 1.5rem;
     }
     .archive-item {
@@ -428,11 +429,10 @@
       </div>
     </div>
 
-    <!-- MAIN FEATURED VIDEO -->
+    <!-- MAIN FEATURED VIDEO (AUTOMATICALLY LOADS HIGHEST NUMBER) -->
     <div class="video-section-wrapper">
       <div class="video-wrapper">
-        <video controls autoplay muted playsinline>
-          <source src="video1.mp4" type="video/mp4">
+        <video id="main-video" controls autoplay muted playsinline>
           Your browser does not support the video tag.
         </video>
       </div>
@@ -551,20 +551,12 @@
     </div>
   </section>
 
-  <!-- VIDEO ARCHIVE -->
-  <div class="video-archive-section">
+  <!-- VIDEO ARCHIVE (AUTOMATICALLY GENERATES OLDER VIDEOS) -->
+  <div class="video-archive-section" id="archive-section">
     <div class="video-archive-inner">
       <div class="section-label">Video Archive &amp; Insights</div>
-      <div class="archive-grid">
-        <div class="archive-item">
-          <video class="archive-video-thumb" controls preload="metadata">
-            <source src="video2.mp4" type="video/mp4">
-          </video>
-          <div class="archive-info">
-            <div class="archive-title">Architectural Perspective &amp; Process</div>
-            <div class="archive-desc">Exploring workflow, detailing, and structural precision.</div>
-          </div>
-        </div>
+      <div class="archive-grid" id="archive-grid">
+        <!-- Older videos automatically appear here in order -->
       </div>
     </div>
   </div>
@@ -573,6 +565,64 @@
     Professional Architects Council &middot; Reg. No. 331
     <div class="reg-line">Republic of Mauritius</div>
   </footer>
+
+  <!-- SCRIPT THAT HANDLES EVERYTHING AUTOMATICALLY -->
+  <script>
+    async function autoLoadVideos() {
+      let existingVideos = [];
+      // Checks video1.mp4 up to video20.mp4 automatically
+      for (let i = 1; i <= 20; i++) {
+        let filename = `video${i}.mp4`;
+        try {
+          let response = await fetch(filename, { method: 'HEAD' });
+          if (response.ok) {
+            existingVideos.push(i);
+          }
+        } catch (e) {
+          // Ignore network errors
+        }
+      }
+
+      if (existingVideos.length > 0) {
+        // Sort descending so the highest number is first (e.g., 4, 3, 2, 1)
+        existingVideos.sort((a, b) => b - a);
+
+        // Highest number plays at the top hero section
+        let topVideoNum = existingVideos[0];
+        let mainVideo = document.getElementById('main-video');
+        mainVideo.innerHTML = `<source src="video${topVideoNum}.mp4" type="video/mp4">Your browser does not support the video tag.`;
+        mainVideo.load();
+
+        // All remaining older videos populate the archive section automatically
+        let archiveGrid = document.getElementById('archive-grid');
+        let archiveSection = document.getElementById('archive-section');
+        archiveGrid.innerHTML = '';
+
+        if (existingVideos.length > 1) {
+          archiveSection.style.display = 'block';
+          for (let j = 1; j < existingVideos.length; j++) {
+            let vNum = existingVideos[j];
+            archiveGrid.innerHTML += `
+              <div class="archive-item">
+                <video class="archive-video-thumb" controls preload="metadata">
+                  <source src="video${vNum}.mp4" type="video/mp4">
+                </video>
+                <div class="archive-info">
+                  <div class="archive-title">Architectural Insight #${vNum}</div>
+                  <div class="archive-desc">Design philosophy, structural detail, and spatial planning.</div>
+                </div>
+              </div>
+            `;
+          }
+        } else {
+          // Hide archive section if there is only 1 video total
+          archiveSection.style.display = 'none';
+        }
+      }
+    }
+
+    autoLoadVideos();
+  </script>
 
 </body>
 </html>
