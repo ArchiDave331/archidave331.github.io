@@ -33,22 +33,23 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: var(--black);
       color: var(--text);
-      line-height: 1.7;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
     }
 
     /* ════════════════════════════════════════
-       HERO & TOP SECTION
+       HERO & TOP SECTION (FITS MOBILE SCREEN PERFECTLY)
        ════════════════════════════════════════ */
     .hero-section {
       min-height: 100vh;
+      min-height: 100dvh; /* Dynamic viewport unit for mobile browsers */
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 4rem 1.5rem 2rem 1.5rem;
+      justify-content: space-between;
+      padding: 1.5rem 1rem 1rem 1rem;
       position: relative;
     }
 
@@ -57,7 +58,7 @@
       max-width: 440px;
       display: flex;
       flex-direction: column;
-      gap: 2.5rem;
+      gap: 1.25rem;
       align-items: center;
       text-align: center;
     }
@@ -65,22 +66,22 @@
     /* 1. Refined Brand Slogan */
     .brand-slogan {
       font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-style: italic;
       color: var(--accent);
-      letter-spacing: 1.5px;
-      line-height: 1.5;
+      letter-spacing: 1px;
+      line-height: 1.4;
       max-width: 380px;
     }
 
-    /* 2. Architectural Brand Block */
+    /* 2. Architectural Brand Identity */
     .brand-identity {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 4px;
     }
     .brand-identity h1 {
-      font-size: 2rem;
+      font-size: 1.75rem;
       font-weight: 300;
       letter-spacing: 5px;
       line-height: 1;
@@ -88,7 +89,7 @@
       color: var(--text);
     }
     .brand-identity .reg-badge {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 400;
       letter-spacing: 3px;
       color: var(--text-muted);
@@ -98,7 +99,7 @@
     .action-group {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0.6rem;
       width: 100%;
     }
 
@@ -106,17 +107,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 10px;
       width: 100%;
-      padding: 16px 24px;
+      padding: 12px 18px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 6px;
       color: var(--text);
       text-decoration: none;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 2.5px;
+      letter-spacing: 2px;
       text-transform: uppercase;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -125,7 +126,6 @@
       background: var(--surface-hover);
       border-color: var(--border-hover);
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
     }
 
     .btn-architectural.whatsapp {
@@ -136,14 +136,13 @@
       border-color: var(--accent);
     }
 
-    .btn-icon { font-size: 1rem; }
+    .btn-icon { font-size: 0.9rem; }
 
-    /* 4. Video Player Wrapper (1400x1080 aspect ratio) */
+    /* 4. Featured Video Player */
     .video-section-wrapper {
       width: 100%;
-      max-width: 720px;
-      margin: 3rem auto 0 auto;
-      padding: 0 1rem;
+      max-width: 440px;
+      margin: 0.5rem 0;
     }
 
     .video-wrapper {
@@ -153,7 +152,7 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
     }
 
     .video-wrapper video {
@@ -165,20 +164,20 @@
 
     /* Scroll Indicator */
     .scroll-hint {
-      margin-top: 3rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
       color: var(--text-dim);
-      font-size: 0.65rem;
-      letter-spacing: 3px;
+      font-size: 0.6rem;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
       text-decoration: none;
       transition: color 0.2s;
+      padding-top: 0.5rem;
     }
     .scroll-hint:hover { color: var(--text); }
-    .scroll-arrow { font-size: 0.9rem; animation: bounce 2s infinite; }
+    .scroll-arrow { font-size: 0.85rem; animation: bounce 2s infinite; }
 
     @keyframes bounce {
       0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
@@ -192,7 +191,7 @@
     .section {
       max-width: 960px;
       margin: 0 auto;
-      padding: 5rem 2rem;
+      padding: 4rem 1.5rem;
     }
 
     .section-label {
@@ -213,40 +212,6 @@
       background: var(--border);
     }
 
-    /* Video Archive Section */
-    .video-archive-section {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .video-archive-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 4rem 2rem;
-    }
-    .archive-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .archive-item {
-      background: var(--black);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
-      transition: transform 0.3s, border-color 0.3s;
-    }
-    .archive-item:hover { transform: translateY(-2px); border-color: var(--accent); }
-    .archive-video-thumb {
-      width: 100%;
-      aspect-ratio: 16/9;
-      background: #000;
-      object-fit: cover;
-    }
-    .archive-info { padding: 1.2rem; }
-    .archive-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.3rem; color: var(--text); }
-    .archive-desc { font-size: 0.75rem; color: var(--text-dim); }
-
     /* Services */
     .services-section {
       background: var(--surface);
@@ -256,7 +221,7 @@
     .services-inner {
       max-width: 960px;
       margin: 0 auto;
-      padding: 4rem 2rem;
+      padding: 4rem 1.5rem;
     }
     .services-grid {
       display: grid;
@@ -283,330 +248,8 @@
 
     /* Profile text */
     .profile-text {
-      font-size: 1.1rem;
-      line-height: 1.9;
+      font-size: 1.05rem;
+      line-height: 1.85;
       color: var(--text-muted);
       max-width: 720px;
       font-weight: 300;
-    }
-
-    /* Timeline */
-    .timeline { position: relative; padding-left: 2.5rem; }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background: linear-gradient(to bottom, var(--accent), var(--border));
-    }
-    .timeline-item { position: relative; padding-bottom: 3rem; }
-    .timeline-item:last-child { padding-bottom: 0; }
-    .timeline-dot {
-      position: absolute;
-      left: -2.5rem;
-      top: 0.3rem;
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--black);
-      border: 2px solid var(--accent);
-      transform: translateX(-4.5px);
-    }
-    .timeline-item.current .timeline-dot {
-      background: var(--accent);
-      box-shadow: 0 0 0 4px rgba(197, 179, 149, 0.15);
-    }
-    .timeline-duration {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.3rem;
-    }
-    .timeline-role { font-size: 1.05rem; font-weight: 600; color: var(--text); margin-bottom: 0.1rem; }
-    .timeline-company {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 0.95rem;
-      color: var(--text-dim);
-      margin-bottom: 0.4rem;
-    }
-    .timeline-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; }
-
-    /* Education */
-    .edu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-    .edu-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 2rem;
-      position: relative;
-      border-radius: 4px;
-      transition: transform 0.3s;
-    }
-    .edu-card:hover { transform: translateY(-2px); border-color: var(--border-hover); }
-    .edu-degree { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.3rem; }
-    .edu-school {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 0.9rem;
-      color: var(--text-dim);
-      margin-bottom: 0.4rem;
-    }
-    .edu-years {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    /* Project Types */
-    .project-types-section {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .project-types-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 4rem 2rem;
-    }
-    .type-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.25rem;
-    }
-    .type-card {
-      padding: 1.2rem 1.5rem;
-      border: 1px solid var(--border);
-      background: var(--black);
-      transition: all 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      border-radius: 4px;
-    }
-    .type-card:hover {
-      border-color: var(--accent);
-      background: var(--surface-hover);
-      transform: translateY(-2px);
-    }
-    .type-card-icon { font-size: 1rem; color: var(--accent); flex-shrink: 0; }
-    .type-card-name { font-size: 0.9rem; font-weight: 500; color: var(--text); }
-
-    /* Footer */
-    .profile-footer {
-      text-align: center;
-      padding: 3rem 2rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-    }
-    .profile-footer .reg-line { margin-top: 0.4rem; color: var(--accent); }
-
-    @media (max-width: 900px) {
-      .services-grid, .type-cards { grid-template-columns: repeat(2, 1fr); }
-      .section { padding: 4rem 1.5rem; }
-    }
-    @media (max-width: 640px) {
-      html { font-size: 15px; }
-      .services-grid, .type-cards { grid-template-columns: 1fr; gap: 1rem; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- ════════ TOP HERO SECTION ════════ -->
-  <header class="hero-section">
-    <div class="hero-container">
-      
-      <!-- BRAND SLOGAN -->
-      <div class="brand-slogan">
-        Designed with vision. Planned with precision. Built to last.
-      </div>
-
-      <!-- ARCHITECT BRAND IDENTITY -->
-      <div class="brand-identity">
-        <h1>Architect</h1>
-        <div class="reg-badge">331</div>
-      </div>
-
-      <!-- UNIFIED ARCHITECTURAL ACTION BUTTONS -->
-      <div class="action-group">
-        <a href="contact.vcf" class="btn-architectural">
-          <span class="btn-icon">＋</span> Add to Contacts
-        </a>
-        <a href="https://wa.me/23054293170?text=Hello ,%20I%20would%20like%20to%20discuss%20an%20architectural%20project%20with%20you." target="_blank" class="btn-architectural whatsapp">
-          <span class="btn-icon">💬</span> Discuss Your Project (WhatsApp)
-        </a>
-        <a href="mailto:davidhmj@gmail.com" class="btn-architectural">
-          <span class="btn-icon">✉️</span> Send an Email
-        </a>
-      </div>
-
-    </div>
-
-    <!-- ════════ FEATURED VIDEO (NOW PULS FROM video2.mp4 - HIGHEST NUMBER) ════════ -->
-    <div class="video-section-wrapper">
-      <div class="video-wrapper">
-        <video controls autoplay muted playsinline>
-          <source src="video2.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
-    </div>
-
-    <a href="#profile" class="scroll-hint">
-      <span>SCROLL DOWN</span>
-      <span class="scroll-arrow">↓</span>
-    </a>
-  </header>
-
-  <!-- ════════ PROFILE ════════ -->
-  <section class="section" id="profile">
-    <div class="section-label">Profile</div>
-    <p class="profile-text">
-      Senior Registered Architect with over 20 years of international and local experience
-      across residential, commercial, institutional, industrial, and landscape projects.
-      Skilled at translating complex spatial requirements into practical, regulatory-compliant
-      solutions&mdash;overseeing projects seamlessly through all work stages from
-      master planning and concept design to site supervision and handover.
-    </p>
-  </section>
-
-  <!-- ════════ SERVICES ════════ -->
-  <div class="services-section">
-    <div class="services-inner">
-      <div class="section-label">Services</div>
-      <div class="services-grid">
-        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Master Planning</div></div>
-        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Concept Design</div></div>
-        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Schematic Design</div></div>
-        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Design Development</div></div>
-        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Construction Documentation</div></div>
-        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Tender &amp; Contract Administration</div></div>
-        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Site Supervision</div></div>
-        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Project Handover</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ════════ PROJECT TYPES ════════ -->
-  <div class="project-types-section">
-    <div class="project-types-inner">
-      <div class="section-label">Project Types</div>
-      <div class="type-cards">
-        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Residential</div></div>
-        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Commercial</div></div>
-        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Institutional</div></div>
-        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Industrial</div></div>
-        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Landscape Projects</div></div>
-        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Interior Design &amp; Furniture Modelling</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ════════ EXPERIENCE ════════ -->
-  <section class="section">
-    <div class="section-label">Professional Experience</div>
-    <div class="timeline">
-
-      <div class="timeline-item current">
-        <div class="timeline-dot"></div>
-        <div class="timeline-duration">2026 &ndash; Present</div>
-        <div class="timeline-role">Collaborating Architect</div>
-        <div class="timeline-company">SHELTER STUDIO Ltd, Mauritius</div>
-        <div class="timeline-desc">Managing full architectural stages across residential, commercial, institutional, industrial, landscape, and mixed-use developments in Mauritius.</div>
-      </div>
-
-      <div class="timeline-item current">
-        <div class="timeline-dot"></div>
-        <div class="timeline-duration">2022 &ndash; Present</div>
-        <div class="timeline-role">Collaborating Architect</div>
-        <div class="timeline-company">VISIO Architecture Ltd, Mauritius</div>
-        <div class="timeline-desc">Managing full architectural stages across residential, commercial, institutional, industrial, landscape, and mixed-use developments in Mauritius.</div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-duration">2008 &ndash; 2022</div>
-        <div class="timeline-role">Senior Architect / Project Manager</div>
-        <div class="timeline-company">L&rsquo;Occitane Group, Moscow, Russia</div>
-        <div class="timeline-desc">Led retail and commercial architecture portfolios across major international markets over a 14-year tenure.</div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-duration">2006 &ndash; 2008</div>
-        <div class="timeline-role">Architect</div>
-        <div class="timeline-company">Absida Architects, Moscow, Russia</div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-duration">2004 &ndash; 2006</div>
-        <div class="timeline-role">Architect</div>
-        <div class="timeline-company">Architectural Bureau PLN, Moscow, Russia</div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-duration">2002 &ndash; 2004</div>
-        <div class="timeline-role">Architect</div>
-        <div class="timeline-company">Architectural Lab Olga &amp; Andrei, Moscow, Russia</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ════════ EDUCATION ════════ -->
-  <section class="section">
-    <div class="section-label">Education &amp; Registration</div>
-    <div class="edu-grid">
-      <div class="edu-card">
-        <div class="edu-degree">Master of Architecture (M.Arch)</div>
-        <div class="edu-school">Peoples&rsquo; Friendship University of Russia (RUDN)</div>
-        <div class="edu-years">2002 &ndash; 2004</div>
-      </div>
-      <div class="edu-card">
-        <div class="edu-degree">Bachelor of Architecture (B.Arch)</div>
-        <div class="edu-school">Peoples&rsquo; Friendship University of Russia (RUDN)</div>
-        <div class="edu-years">1997 &ndash; 2002</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════ VIDEO ARCHIVE (NOW PULLS LOWER NUMBERS LIKE video1.mp4) ════════ -->
-  <div class="video-archive-section">
-    <div class="video-archive-inner">
-      <div class="section-label">Video Archive &amp; Insights</div>
-      <div class="archive-grid">
-        <div class="archive-item">
-          <video class="archive-video-thumb" controls preload="metadata">
-            <source src="video1.mp4" type="video/mp4">
-          </video>
-          <div class="archive-info">
-            <div class="archive-title">Architectural Perspective &amp; Process</div>
-            <div class="archive-desc">Exploring workflow, detailing, and structural precision.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ════════ FOOTER ════════ -->
-  <footer class="profile-footer">
-    Professional Architects Council &middot; Reg. No. 331
-    <div class="reg-line">Republic of Mauritius</div>
-  </footer>
-
-</body>
-</html>
