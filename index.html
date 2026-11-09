@@ -428,10 +428,11 @@
       </div>
     </div>
 
-    <!-- MAIN FEATURED VIDEO (AUTOMATICALLY LOADS HIGHEST NUMBERED VIDEO) -->
+    <!-- MAIN FEATURED VIDEO -->
     <div class="video-section-wrapper">
       <div class="video-wrapper">
-        <video id="main-video" controls autoplay muted playsinline>
+        <video controls autoplay muted playsinline>
+          <source src="video1.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
@@ -550,12 +551,20 @@
     </div>
   </section>
 
-  <!-- VIDEO ARCHIVE (AUTOMATICALLY GENERATES OLDER VIDEOS) -->
+  <!-- VIDEO ARCHIVE -->
   <div class="video-archive-section">
     <div class="video-archive-inner">
       <div class="section-label">Video Archive &amp; Insights</div>
-      <div class="archive-grid" id="archive-grid">
-        <!-- Older videos automatically appear here -->
+      <div class="archive-grid">
+        <div class="archive-item">
+          <video class="archive-video-thumb" controls preload="metadata">
+            <source src="video2.mp4" type="video/mp4">
+          </video>
+          <div class="archive-info">
+            <div class="archive-title">Architectural Perspective &amp; Process</div>
+            <div class="archive-desc">Exploring workflow, detailing, and structural precision.</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -564,62 +573,6 @@
     Professional Architects Council &middot; Reg. No. 331
     <div class="reg-line">Republic of Mauritius</div>
   </footer>
-
-  <!-- SMART SCRIPT TO DETECT AND SORT VIDEOS AUTOMATICALLY -->
-  <script>
-    async function initVideos() {
-      // We check numbers from 1 up to 20 to see which video files exist in your repo
-      let existingVideos = [];
-      for (let i = 1; i <= 20; i++) {
-        let filename = `video${i}.mp4`;
-        try {
-          let response = await fetch(filename, { method: 'HEAD' });
-          if (response.ok) {
-            existingVideos.push(i);
-          }
-        } catch (e) {
-          // Ignore fetch errors
-        }
-      }
-
-      if (existingVideos.length > 0) {
-        // Sort descending so the highest number is first
-        existingVideos.sort((a, b) => b - a);
-
-        // Highest number goes to the top player
-        let topVideoNum = existingVideos[0];
-        let mainVideo = document.getElementById('main-video');
-        mainVideo.innerHTML = `<source src="video${topVideoNum}.mp4" type="video/mp4">Your browser does not support the video tag.`;
-        mainVideo.load();
-
-        // Remaining videos go into the archive grid at the bottom
-        let archiveGrid = document.getElementById('archive-grid');
-        archiveGrid.innerHTML = ''; // clear placeholder
-
-        for (let j = 1; j < existingVideos.length; j++) {
-          let vNum = existingVideos[j];
-          archiveGrid.innerHTML += `
-            <div class="archive-item">
-              <video class="archive-video-thumb" controls preload="metadata">
-                <source src="video${vNum}.mp4" type="video/mp4">
-              </video>
-              <div class="archive-info">
-                <div class="archive-title">Architectural Insight #${vNum}</div>
-                <div class="archive-desc">Design philosophy, structural detail, and spatial planning.</div>
-              </div>
-            </div>
-          `;
-        }
-
-        // If there are no older videos yet, hide the archive section
-        if (existingVideos.length <= 1) {
-          document.querySelector('.video-archive-section').style.display = 'none';
-        }
-      }
-    }
-
-    initVideos();
-  </script>
 
 </body>
 </html>
