@@ -11,12 +11,17 @@
   <title>David H. Marie-Jeanne — Registered Architect 331</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   
-  <!-- PREVENT MOBILE AUTO-SCROLL ON LOAD -->
+  <!-- PREVENT MOBILE AUTO-SCROLL & POSITION RESTORATION -->
   <script>
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
-    window.scrollTo(0, 0);
+    window.addEventListener('load', function() {
+      window.scrollTo(0, 0);
+      setTimeout(function() {
+        window.scrollTo(0, 0);
+      }, 50);
+    });
   </script>
 
   <!-- GOATCOUNTER VISITOR & EVENT TRACKER -->
