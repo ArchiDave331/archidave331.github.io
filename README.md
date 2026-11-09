@@ -1,2 +1,2 @@
 # archidave331.github.io
-Digital card &amp; interactive architectural showca
+Digital card &amp; interactive architectural showcast
