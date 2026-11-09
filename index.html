@@ -11,7 +11,7 @@
   <title>David H. Marie-Jeanne — Registered Architect 331</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   
-  <!-- GOATCOUNTER VISITOR TRACKER -->
+  <!-- GOATCOUNTER VISITOR & EVENT TRACKER -->
   <script data-goatcounter="https://archidave331.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
   
@@ -570,7 +570,7 @@
     <div class="reg-line">Republic of Mauritius</div>
   </footer>
 
-  <!-- AUTOMATIC SCRIPT WITH DOWNLOAD PROTECTION -->
+  <!-- AUTOMATIC SCRIPT WITH DOWNLOAD PROTECTION & VIDEO PLAY COUNTING -->
   <script>
     async function autoLoadVideos() {
       let existingVideos = [];
@@ -595,6 +595,17 @@
         mainVideo.innerHTML = `<source src="video${topVideoNum}.mp4" type="video/mp4">Your browser does not support the video tag.`;
         mainVideo.load();
 
+        // Track main hero video play events
+        mainVideo.addEventListener('play', function() {
+          if (window.goatcounter) {
+            window.goatcounter.count({
+              path: `video-play-${topVideoNum}`,
+              title: `Video Play: video${topVideoNum}.mp4`,
+              event: true
+            });
+          }
+        }, { once: true });
+
         let archiveGrid = document.getElementById('archive-grid');
         let archiveSection = document.getElementById('archive-section');
         archiveGrid.innerHTML = '';
@@ -605,7 +616,7 @@
             let vNum = existingVideos[j];
             archiveGrid.innerHTML += `
               <div class="archive-item">
-                <video class="archive-video-thumb" controls autoplay muted playsinline controlsList="nodownload">
+                <video class="archive-video-thumb archive-vid-${vNum}" controls muted playsinline controlsList="nodownload">
                   <source src="video${vNum}.mp4" type="video/mp4">
                 </video>
                 <div class="archive-info">
@@ -615,6 +626,24 @@
               </div>
             `;
           }
+
+          // Track archive video play events
+          for (let j = 1; j < existingVideos.length; j++) {
+            let vNum = existingVideos[j];
+            let thumbVideo = document.querySelector(`.archive-vid-${vNum}`);
+            if (thumbVideo) {
+              thumbVideo.addEventListener('play', function() {
+                if (window.goatcounter) {
+                  window.goatcounter.count({
+                    path: `video-play-${vNum}`,
+                    title: `Video Play: video${vNum}.mp4`,
+                    event: true
+                  });
+                }
+              }, { once: true });
+            }
+          }
+
         } else {
           archiveSection.style.display = 'none';
         }
