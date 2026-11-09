@@ -429,10 +429,10 @@
       </div>
     </div>
 
-    <!-- MAIN FEATURED VIDEO (AUTOMATICALLY LOADS HIGHEST NUMBER) -->
+    <!-- MAIN FEATURED VIDEO (DOWNLOAD DISABLED) -->
     <div class="video-section-wrapper">
       <div class="video-wrapper">
-        <video id="main-video" controls autoplay muted playsinline>
+        <video id="main-video" controls autoplay muted playsinline controlsList="nodownload">
           Your browser does not support the video tag.
         </video>
       </div>
@@ -551,7 +551,7 @@
     </div>
   </section>
 
-  <!-- VIDEO ARCHIVE (AUTOMATICALLY GENERATES OLDER VIDEOS) -->
+  <!-- VIDEO ARCHIVE (DOWNLOAD DISABLED ON ALL THUMBS) -->
   <div class="video-archive-section" id="archive-section">
     <div class="video-archive-inner">
       <div class="section-label">Video Archive &amp; Insights</div>
@@ -566,11 +566,10 @@
     <div class="reg-line">Republic of Mauritius</div>
   </footer>
 
-  <!-- SCRIPT THAT HANDLES EVERYTHING AUTOMATICALLY -->
+  <!-- AUTOMATIC SCRIPT WITH DOWNLOAD PROTECTION -->
   <script>
     async function autoLoadVideos() {
       let existingVideos = [];
-      // Checks video1.mp4 up to video20.mp4 automatically
       for (let i = 1; i <= 20; i++) {
         let filename = `video${i}.mp4`;
         try {
@@ -584,7 +583,6 @@
       }
 
       if (existingVideos.length > 0) {
-        // Sort descending so the highest number is first (e.g., 4, 3, 2, 1)
         existingVideos.sort((a, b) => b - a);
 
         // Highest number plays at the top hero section
@@ -593,7 +591,6 @@
         mainVideo.innerHTML = `<source src="video${topVideoNum}.mp4" type="video/mp4">Your browser does not support the video tag.`;
         mainVideo.load();
 
-        // All remaining older videos populate the archive section automatically
         let archiveGrid = document.getElementById('archive-grid');
         let archiveSection = document.getElementById('archive-section');
         archiveGrid.innerHTML = '';
@@ -604,18 +601,17 @@
             let vNum = existingVideos[j];
             archiveGrid.innerHTML += `
               <div class="archive-item">
-                <video class="archive-video-thumb" controls preload="metadata">
+                <video class="archive-video-thumb" controls autoplay muted playsinline controlsList="nodownload">
                   <source src="video${vNum}.mp4" type="video/mp4">
                 </video>
                 <div class="archive-info">
                   <div class="archive-title">Architectural Insight</div>
-                  <div class="archive-desc">Design philosophy.</div>
+                  <div class="archive-desc">Design philosophy, structural detail, and spatial planning.</div>
                 </div>
               </div>
             `;
           }
         } else {
-          // Hide archive section if there is only 1 video total
           archiveSection.style.display = 'none';
         }
       }
