@@ -1,76 +1,625 @@
-<!-- UNIVERSAL PLAYBACK SCRIPT (COMPATIBLE WITH FACEBOOK & IN-APP BROWSERS) -->
-  <script>
-    // Hero Video Control
-    const mainVideo = document.getElementById('main-video');
-    const mainPlayBtn = document.getElementById('main-play-btn');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    function playMainVideo() {
-      // Unmute and display native controls synchronously to preserve gesture token
-      mainVideo.muted = false;
-      mainVideo.controls = true;
-      mainPlayBtn.style.display = 'none';
+  <!-- PRIMARY BROWSER TAB TITLE & SEO META TAGS -->
+  <title>ARCHITECT 331</title>
+  <meta name="title" content="ARCHITECT 331">
+  <meta name="description" content="Senior Registered Architect in Mauritius (PAC Reg. 331). Architectural design, master planning, and remote construction management for local clients and investors from South Africa, Réunion Island, and Rodrigues.">
+  <meta name="keywords" content="Architecte Maurice, Architect Mauritius, Registered Architect Mauritius, South Africa Architect Mauritius, Architecte Réunion Maurice, Architecte Rodrigues, Plan de maison Maurice, Permis de construire Maurice, PDS Villa Architect, PAC Reg 331, Spatial Planning, Master Planning Mauritius">
 
-      var playPromise = mainVideo.play();
-      if (playPromise !== undefined) {
-        playPromise.then(function() {
-          if (window.goatcounter) {
-            window.goatcounter.count({
-              path: 'video-play-hero',
-              title: 'Video Play: Hero Video',
-              event: true
-            });
+  <!-- GEOGRAPHIC & LANGUAGE TAGS -->
+  <meta http-equiv="content-language" content="en, fr">
+  <meta name="geo.region" content="MU">
+  <meta name="geo.placename" content="Mauritius">
+
+  <!-- CANONICAL LINK -->
+  <link rel="canonical" href="https://archidave331.github.io/">
+
+  <!-- FAVICON INTEGRATION -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+  <!-- OPEN GRAPH / SOCIAL PREVIEW CARDS -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://archidave331.github.io/">
+  <meta property="og:title" content="ARCHITECT 331">
+  <meta property="og:description" content="Cabinet d'architecture & spatial planning à l'Île Maurice. Architectural management for local & international investors.">
+
+  <!-- SPEED PRECONNECT FOR FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- GOATCOUNTER VISITOR & EVENT TRACKER -->
+  <script data-goatcounter="https://archidave331.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
+  <!-- STRUCTURED SCHEMA DATA (ALL MAURITIUS + REGIONAL & INTERNATIONAL INVESTORS) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ArchitecturalFirm",
+    "name": "David H. Marie-Jeanne — Registered Architect 331",
+    "url": "https://archidave331.github.io",
+    "description": "Senior Registered Architect in Mauritius (PAC Reg. 331). Cabinet d'architecture et de conception spatiale à l'Île Maurice pour clients locaux et investisseurs internationaux (Réunion, Afrique du Sud, Rodrigues) : villas, PDS/IRS, permis de construire, et suivi de chantier à distance.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "MU",
+      "addressRegion": "Mauritius"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "addressCountry": "MU"
+    },
+    "knowsLanguage": ["en", "fr", "mfe"],
+    "priceRange": "$$$",
+    "areaServed": [
+      { "@type": "Country", "name": "Mauritius" },
+      { "@type": "AdministrativeArea", "name": "Rodrigues" },
+      { "@type": "Country", "name": "Reunion Island" },
+      { "@type": "Country", "name": "South Africa" },
+      { "@type": "AdministrativeArea", "name": "Riviere du Rempart District" },
+      { "@type": "AdministrativeArea", "name": "Pamplemousses District" },
+      { "@type": "AdministrativeArea", "name": "Port Louis District" },
+      { "@type": "AdministrativeArea", "name": "Plaines Wilhems District" },
+      { "@type": "AdministrativeArea", "name": "Black River District" },
+      { "@type": "AdministrativeArea", "name": "Grand Port District" },
+      { "@type": "AdministrativeArea", "name": "Savanne District" },
+      { "@type": "AdministrativeArea", "name": "Flacq District" },
+      { "@type": "AdministrativeArea", "name": "Moka District" }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Architectural & Investment Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Master Planning & Villa Design for Foreign Investors"
           }
-        }).catch(function(error) {
-          // Fallback if blocked: keep controls visible so user can tap standard play bar
-          mainVideo.controls = true;
-        });
-      }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Remote Project Management & Site Supervision"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Permis de Construire & Regulatory Compliance"
+          }
+        }
+      ]
+    }
+  }
+  </script>
+  
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #050505;
+      --surface: #111111;
+      --surface-hover: #1a1a1a;
+      --text: #ffffff;
+      --text-muted: #b0b0b0;
+      --text-dim: #777777;
+      --accent: #c5b395;
+      --border: rgba(255, 255, 255, 0.12);
+      --border-hover: rgba(197, 179, 149, 0.5);
     }
 
-    mainPlayBtn.addEventListener('click', playMainVideo);
-    mainVideo.addEventListener('click', playMainVideo);
+    html { scroll-behavior: smooth; font-size: 16px; }
 
-    mainVideo.addEventListener('play', function() {
-      mainPlayBtn.style.display = 'none';
-      mainVideo.controls = true;
-    });
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--black);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
 
-    // Archive Video Controls
-    document.querySelectorAll('.archive-play-btn').forEach(function(btn) {
-      btn.addEventListener('click', function(e) {
-        var targetId = e.target.getAttribute('data-target');
-        var archiveVideo = document.getElementById(targetId);
-        
-        archiveVideo.muted = false;
-        archiveVideo.controls = true;
-        e.target.style.display = 'none';
+    .hero-section {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 1rem 1rem 1rem;
+      position: relative;
+    }
 
-        var playPromise = archiveVideo.play();
-        if (playPromise !== undefined) {
-          playPromise.then(function() {
-            if (window.goatcounter) {
-              window.goatcounter.count({
-                path: 'video-play-' + targetId,
-                title: 'Video Play: ' + targetId,
-                event: true
-              });
-            }
-          }).catch(function(err) {
-            archiveVideo.controls = true;
-          });
-        }
-      });
-    });
+    .hero-container {
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      align-items: center;
+      text-align: center;
+    }
 
-    document.querySelectorAll('.archive-video-thumb').forEach(function(vid) {
-      vid.addEventListener('click', function() {
-        if (vid.paused) {
-          vid.muted = false;
-          vid.controls = true;
-          var btn = vid.parentElement.querySelector('.archive-play-btn');
-          if (btn) btn.style.display = 'none';
-          vid.play();
-        }
-      });
-    });
-  </script>
+    .brand-slogan {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--accent);
+      letter-spacing: 1px;
+      line-height: 1.4;
+      max-width: 380px;
+    }
+
+    .brand-identity {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .brand-identity h1 {
+      font-size: 1.75rem;
+      font-weight: 300;
+      letter-spacing: 5px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .brand-identity .reg-badge {
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 3px;
+      color: var(--text-muted);
+    }
+
+    .action-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      width: 100%;
+    }
+
+    .btn-architectural {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 12px 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-architectural:hover {
+      background: var(--surface-hover);
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-architectural.whatsapp {
+      border-color: rgba(197, 179, 149, 0.3);
+      background: linear-gradient(to bottom, #141414, #0d0d0d);
+    }
+    .btn-architectural.whatsapp:hover {
+      border-color: var(--accent);
+    }
+
+    .btn-icon { font-size: 0.9rem; }
+
+    /* UNIFIED VIDEO SIZES & ACCESSIBLE CENTER PLAY BUTTON OVERLAY */
+    .video-section-wrapper {
+      width: 100%;
+      max-width: 720px;
+      margin: 0.75rem 0;
+    }
+
+    .video-wrapper {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+      position: relative;
+    }
+
+    .video-wrapper video,
+    .archive-video-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ACCESSIBLE REAL BUTTON PLAY OVERLAY */
+    .custom-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      background: rgba(197, 179, 149, 0.9);
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 5;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+      padding: 0;
+    }
+
+    .custom-play-btn:hover {
+      background: var(--accent);
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .custom-play-btn::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 16px solid var(--black);
+      margin-left: 4px;
+    }
+
+    .custom-play-btn:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    .scroll-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-dim);
+      font-size: 0.6rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.2s;
+      padding-top: 0.5rem;
+    }
+    .scroll-hint:hover { color: var(--text); }
+    .scroll-arrow { font-size: 0.85rem; animation: bounce 2s infinite; }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(5px); }
+      60% { transform: translateY(2px); }
+    }
+
+    .section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .services-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .services-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .service-card {
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      background: var(--black);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border-radius: 4px;
+    }
+    .service-card:hover {
+      border-color: var(--accent);
+      background: var(--surface-hover);
+      transform: translateY(-2px);
+    }
+    .service-icon { font-size: 1.1rem; color: var(--accent); flex-shrink: 0; width: 1.5rem; text-align: center; }
+    .service-name { font-size: 0.9rem; font-weight: 500; color: var(--text); line-height: 1.4; }
+
+    .profile-text {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text-muted);
+      max-width: 960px;
+      font-weight: 300;
+      text-align: justify;
+    }
+
+    .timeline { position: relative; padding-left: 2.5rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), var(--border));
+    }
+    .timeline-item { position: relative; padding-bottom: 3rem; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -2.5rem;
+      top: 0.3rem;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--black);
+      border: 2px solid var(--accent);
+      transform: translateX(-4.5px);
+    }
+    .timeline-item.current .timeline-dot {
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(197, 179, 149, 0.15);
+    }
+    .timeline-duration {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+    .timeline-role { font-size: 1.05rem; font-weight: 600; color: var(--text); margin-bottom: 0.1rem; }
+    .timeline-company {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      margin-bottom: 0.4rem;
+    }
+    .timeline-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; }
+
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      position: relative;
+      border-radius: 4px;
+      transition: transform 0.3s;
+    }
+    .edu-card:hover { transform: translateY(-2px); border-color: var(--border-hover); }
+    .edu-degree { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.3rem; }
+    .edu-school {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      margin-bottom: 0.4rem;
+    }
+    .edu-years {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .project-types-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .project-types-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+    .type-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+    }
+    .type-card {
+      padding: 1.2rem 1.5rem;
+      border: 1px solid var(--border);
+      background: var(--black);
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border-radius: 4px;
+    }
+    .type-card:hover {
+      border-color: var(--accent);
+      background: var(--surface-hover);
+      transform: translateY(-2px);
+    }
+    .type-card-icon { font-size: 1rem; color: var(--accent); flex-shrink: 0; }
+    .type-card-name { font-size: 0.9rem; font-weight: 500; color: var(--text); }
+
+    /* VIDEO ARCHIVE SECTION */
+    .video-archive-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .video-archive-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .archive-item {
+      background: var(--black);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .archive-item:hover { transform: translateY(-2px); border-color: var(--accent); }
+
+    .profile-footer {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .profile-footer .reg-line { margin-top: 0.4rem; color: var(--accent); }
+
+    @media (max-width: 900px) {
+      .services-grid, .type-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      html { font-size: 15px; }
+      .services-grid, .type-cards { grid-template-columns: 1fr; gap: 0.85rem; }
+      .brand-slogan { font-size: 1rem; }
+      .brand-identity h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero-section">
+    <div class="hero-container">
+      <div class="brand-slogan">
+        Designed with vision. Planned with precision. Built to last.
+      </div>
+
+      <div class="brand-identity">
+        <h1>Architect</h1>
+        <div class="reg-badge">331</div>
+      </div>
+
+      <div class="action-group">
+        <a href="contact.vcf" class="btn-architectural">
+          <span class="btn-icon">＋</span> Add to Contacts
+        </a>
+        <a href="https://wa.me/23054293170?text=Hello,%20I%20would%20like%20to%20discuss%20an%20architectural%20project%20with%20you." target="_blank" class="btn-architectural whatsapp">
+          <span class="btn-icon">💬</span> Discuss Your Project (WhatsApp)
+        </a>
+        <a href="mailto:davidhmj@gmail.com" class="btn-architectural">
+          <span class="btn-icon">✉️</span> Send an Email
+        </a>
+      </div>
+    </div>
+
+    <!-- MAIN HERO VIDEO: HARDCODED PRELOAD="NONE" FOR MAXIMUM SPEED -->
+    <div class="video-section-wrapper">
+      <div class="video-wrapper">
+        <video id="main-video" muted playsinline preload="none" controlsList="nodownload">
+          <source src="video2.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <button type="button" class="custom-play-btn" id="main-play-btn" aria-label="Play introduction video"></button>
+      </div>
+    </div>
+
+    <a href="#profile" class="scroll-hint">
+      <span>SCROLL DOWN</span>
+      <span class="scroll-arrow">↓</span>
+    </a>
+  </header>
+
+  <section class="section" id="profile">
+    <div class="section-label">Profile</div>
+    <p class="profile-text">
+      Senior Registered Architect (PAC Reg. No. 331) with over 20 years of international and local experience
+      across residential, commercial, institutional, industrial, and landscape projects.
+      Specializing in full-service architectural management for local clients and international investors
+      (South Africa, Réunion Island, Rodrigues, and Europe)&mdash;offering complete remote project monitoring, 3D visualization,
+      and local regulatory approval handling to turn spatial visions into compliant, enduring realities.
+    </p>
+  </section>
+
+  <div class="services-section">
+    <div class="services-inner">
+      <div class="section-label">Services</div>
+      <div class="services-grid">
+        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Master Planning</div></div>
+        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Concept Design</div></div>
+        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Schematic Design</div></div>
+        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Design Development</div></div>
+        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Construction Documentation</div></div>
+        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Tender &amp; Contract Administration</div></div>
+        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Remote Site Supervision</div></div>
+        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Project Handover</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-types-section">
+    <div class="project-types-inner">
+      <div class="section-label">Project Types</div>
+      <div class="type-cards">
+        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Residential &amp; Private Villas</div></div>
+        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Commercial &amp; Retail</div></div>
+        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Institutional</div></div>
+        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Industrial &amp; Logistics</div></div>
+        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Landscape Projects</div></div>
+        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Interior Design &amp; 3D Modelling</div></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="section-label">Professional Experience</div>
+    <div class="timeline">
+      <div class="timeline-item current">
+        <div class="timeline-dot"></div>
+        <div class="timeline-duration">2026 &ndash; Present</div>
+        <div class="timeline-role">Collaborating Architect</div>
+        <div class="timeline-company">SHELTER STUDIO Ltd, Mauritius</div>
+        <div class="timeline-desc">Managing full architectural stages across residential,
