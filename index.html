@@ -3,10 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
 
   <!-- PRIMARY MULTILINGUAL & REGIONAL SEO META TAGS -->
   <title>Architecte Maurice — David H. Marie-Jeanne (PAC Reg. 331)</title>
@@ -36,19 +32,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  
-  <!-- PREVENT MOBILE AUTO-SCROLL & POSITION RESTORATION -->
-  <script>
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
-    }
-    window.addEventListener('load', function() {
-      window.scrollTo(0, 0);
-      setTimeout(function() {
-        window.scrollTo(0, 0);
-      }, 50);
-    });
-  </script>
 
   <!-- GOATCOUNTER VISITOR & EVENT TRACKER -->
   <script data-goatcounter="https://archidave331.goatcounter.com/count"
@@ -237,7 +220,7 @@
 
     .btn-icon { font-size: 0.9rem; }
 
-    /* UNIFIED VIDEO SIZES & CUSTOM CENTER PLAY BUTTON OVERLAY */
+    /* UNIFIED VIDEO SIZES & ACCESSIBLE CENTER PLAY BUTTON OVERLAY */
     .video-section-wrapper {
       width: 100%;
       max-width: 720px;
@@ -263,7 +246,7 @@
       display: block;
     }
 
-    /* CUSTOM CENTER PLAY BUTTON */
+    /* ACCESSIBLE REAL BUTTON PLAY OVERLAY */
     .custom-play-btn {
       position: absolute;
       top: 50%;
@@ -281,6 +264,7 @@
       z-index: 5;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
       transition: all 0.3s ease;
+      padding: 0;
     }
 
     .custom-play-btn:hover {
@@ -568,13 +552,14 @@
       </div>
     </div>
 
-    <!-- MAIN HERO VIDEO: EAGERLY PRELOADED WITH #t=0.3 FOR INSTANT FIRST FRAME -->
+    <!-- MAIN HERO VIDEO: HARDCODED TO AVOID HEAD PROBING DELAYS -->
     <div class="video-section-wrapper">
       <div class="video-wrapper">
         <video id="main-video" muted playsinline preload="metadata" controlsList="nodownload">
+          <source src="video2.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <div class="custom-play-btn" id="main-play-btn" title="Play Video"></div>
+        <button type="button" class="custom-play-btn" id="main-play-btn" aria-label="Play introduction video"></button>
       </div>
     </div>
 
@@ -691,143 +676,48 @@
     </div>
   </section>
 
-  <!-- VIDEO ARCHIVE -->
-  <div class="video-archive-section" id="archive-section">
-    <div class="video-archive-inner">
-      <div class="section-label">Video Archive &amp; Insights</div>
-      <div class="archive-grid" id="archive-grid">
-        <!-- Older videos automatically appear here in order -->
-      </div>
-    </div>
-  </div>
-
   <footer class="profile-footer">
     Professional Architects Council &middot; Reg. No. 331
     <div class="reg-line">Republic of Mauritius</div>
   </footer>
 
-  <!-- SCRIPT: EAGER TOP VIDEO (#t=0.3) + LAZY ARCHIVE VIDEOS -->
+  <!-- LIGHTNING FAST HERO PLAYER SCRIPT (NO SEQUENTIAL SCANS) -->
   <script>
-    async function autoLoadVideos() {
-      let existingVideos = [];
-      for (let i = 1; i <= 20; i++) {
-        let filename = `video${i}.mp4`;
-        try {
-          let response = await fetch(filename, { method: 'HEAD' });
-          if (response.ok) {
-            existingVideos.push(i);
-          }
-        } catch (e) {
-          // Ignore network errors
+    const mainVideo = document.getElementById('main-video');
+    const mainPlayBtn = document.getElementById('main-play-btn');
+
+    mainPlayBtn.addEventListener('click', async () => {
+      mainVideo.muted = false;
+      mainVideo.controls = true;
+
+      try {
+        await mainVideo.play();
+        mainPlayBtn.style.display = 'none';
+
+        if (window.goatcounter) {
+          window.goatcounter.count({
+            path: 'video-play-hero',
+            title: 'Video Play: Hero Video',
+            event: true
+          });
         }
+      } catch (error) {
+        mainVideo.controls = true;
       }
+    });
 
-      if (existingVideos.length > 0) {
-        existingVideos.sort((a, b) => b - a);
+    mainVideo.addEventListener('play', () => {
+      mainPlayBtn.style.display = 'none';
+    });
 
-        // TOP HERO VIDEO: Loaded immediately with #t=0.3 for instant preview frame
-        let topVideoNum = existingVideos[0];
-        let mainVideo = document.getElementById('main-video');
-        let mainPlayBtn = document.getElementById('main-play-btn');
-
-        mainVideo.innerHTML = `<source src="video${topVideoNum}.mp4#t=0.3" type="video/mp4">Your browser does not support the video tag.`;
-        mainVideo.load();
-
-        // Custom center play button (switches to full source, unmutes, & plays)
-        mainPlayBtn.addEventListener('click', function() {
-          mainVideo.innerHTML = `<source src="video${topVideoNum}.mp4" type="video/mp4">`;
-          mainVideo.load();
-          mainVideo.muted = false;
-          mainVideo.controls = true;
-          mainVideo.play();
-          mainPlayBtn.style.display = 'none';
-
-          if (window.goatcounter) {
-            window.goatcounter.count({
-              path: `video-play-${topVideoNum}`,
-              title: `Video Play: video${topVideoNum}.mp4`,
-              event: true
-            });
-          }
-        });
-
-        // Click video frame directly to play & unmute if paused
-        mainVideo.addEventListener('click', function() {
-          if (mainVideo.paused) {
-            mainVideo.muted = false;
-            mainVideo.play();
-            mainPlayBtn.style.display = 'none';
-            mainVideo.controls = true;
-          }
-        });
-
-        let archiveGrid = document.getElementById('archive-grid');
-        let archiveSection = document.getElementById('archive-section');
-        archiveGrid.innerHTML = '';
-
-        // ARCHIVE VIDEOS: Lower down, safe to lazy load or load metadata only
-        if (existingVideos.length > 1) {
-          archiveSection.style.display = 'block';
-          for (let j = 1; j < existingVideos.length; j++) {
-            let vNum = existingVideos[j];
-            archiveGrid.innerHTML += `
-              <div class="archive-item">
-                <div class="video-wrapper">
-                  <video class="archive-video-thumb archive-vid-${vNum}" muted playsinline preload="none" controlsList="nodownload">
-                    <source src="video${vNum}.mp4#t=0.3" type="video/mp4">
-                  </video>
-                  <div class="custom-play-btn archive-play-btn-${vNum}" title="Play Video"></div>
-                </div>
-                <div class="archive-info">
-                  <div class="archive-title">Architectural Insight</div>
-                  <div class="archive-desc">Design philosophy.</div>
-                </div>
-              </div>
-            `;
-          }
-
-          // Wire up archive play buttons
-          for (let j = 1; j < existingVideos.length; j++) {
-            let vNum = existingVideos[j];
-            let thumbVideo = document.querySelector(`.archive-vid-${vNum}`);
-            let thumbBtn = document.querySelector(`.archive-play-btn-${vNum}`);
-
-            if (thumbVideo && thumbBtn) {
-              thumbBtn.addEventListener('click', function() {
-                thumbVideo.innerHTML = `<source src="video${vNum}.mp4" type="video/mp4">`;
-                thumbVideo.load();
-                thumbVideo.muted = false;
-                thumbVideo.controls = true;
-                thumbVideo.play();
-                thumbBtn.style.display = 'none';
-
-                if (window.goatcounter) {
-                  window.goatcounter.count({
-                    path: `video-play-${vNum}`,
-                    title: `Video Play: video${vNum}.mp4`,
-                    event: true
-                  });
-                }
-              });
-
-              thumbVideo.addEventListener('click', function() {
-                if (thumbVideo.paused) {
-                  thumbVideo.muted = false;
-                  thumbVideo.play();
-                  thumbBtn.style.display = 'none';
-                  thumbVideo.controls = true;
-                }
-              });
-            }
-          }
-
-        } else {
-          archiveSection.style.display = 'none';
-        }
+    mainVideo.addEventListener('click', function() {
+      if (mainVideo.paused) {
+        mainVideo.muted = false;
+        mainVideo.play();
+        mainPlayBtn.style.display = 'none';
+        mainVideo.controls = true;
       }
-    }
-
-    autoLoadVideos();
+    });
   </script>
 
 </body>
