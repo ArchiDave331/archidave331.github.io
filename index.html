@@ -121,4 +121,156 @@
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var
+      background: var(--black);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .hero-section {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 1rem 1rem 1rem;
+      position: relative;
+    }
+
+    .hero-container {
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      align-items: center;
+      text-align: center;
+    }
+
+    .brand-slogan {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--accent);
+      letter-spacing: 1px;
+      line-height: 1.4;
+      max-width: 380px;
+    }
+
+    .brand-identity {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .brand-identity h1 {
+      font-size: 1.75rem;
+      font-weight: 300;
+      letter-spacing: 5px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .brand-identity .reg-badge {
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 3px;
+      color: var(--text-muted);
+    }
+
+    .action-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      width: 100%;
+    }
+
+    .btn-architectural {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 12px 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-architectural:hover {
+      background: var(--surface-hover);
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-architectural.whatsapp {
+      border-color: rgba(197, 179, 149, 0.3);
+      background: linear-gradient(to bottom, #141414, #0d0d0d);
+    }
+    .btn-architectural.whatsapp:hover {
+      border-color: var(--accent);
+    }
+
+    .btn-icon { font-size: 0.9rem; }
+
+    /* UNIFIED VIDEO SIZES (16:9 widescreen, max-width 720px) */
+    .video-section-wrapper {
+      width: 100%;
+      max-width: 720px;
+      margin: 0.75rem 0;
+    }
+
+    .video-wrapper {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+      position: relative;
+    }
+
+    .video-wrapper video,
+    .archive-video-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* CENTER PLAY CONTROLS OVERLAY ON WEBKIT / MOBILE BROWSERS */
+    video::-webkit-media-controls-panel {
+      display: flex !important;
+      justify-content: center !important;
+    }
+
+    video::-webkit-media-controls-start-playback-button {
+      display: block !important;
+      margin: auto !important;
+      align-self: center !important;
+    }
+
+    .scroll-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-dim);
+      font-size: 0.6rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.2s;
+      padding-top: 0.5rem;
+    }
+    .scroll-hint:
