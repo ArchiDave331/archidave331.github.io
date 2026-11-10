@@ -283,6 +283,11 @@
       margin-left: 4px;
     }
 
+    .custom-play-btn:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 4px;
+    }
+
     .scroll-hint {
       display: flex;
       flex-direction: column;
@@ -478,6 +483,7 @@
     .type-card-icon { font-size: 1rem; color: var(--accent); flex-shrink: 0; }
     .type-card-name { font-size: 0.9rem; font-weight: 500; color: var(--text); }
 
+    /* VIDEO ARCHIVE SECTION */
     .video-archive-section {
       background: var(--surface);
       border-top: 1px solid var(--border);
@@ -552,10 +558,10 @@
       </div>
     </div>
 
-    <!-- MAIN HERO VIDEO: HARDCODED TO AVOID HEAD PROBING DELAYS -->
+    <!-- MAIN HERO VIDEO: HARDCODED PRELOAD="NONE" FOR MAXIMUM SPEED -->
     <div class="video-section-wrapper">
       <div class="video-wrapper">
-        <video id="main-video" muted playsinline preload="metadata" controlsList="nodownload">
+        <video id="main-video" muted playsinline preload="none" controlsList="nodownload">
           <source src="video2.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
@@ -676,13 +682,41 @@
     </div>
   </section>
 
+  <!-- VIDEO ARCHIVE SECTION (ADD OLDER VIDEOS HERE MANUALLY WITHOUT SLOW SCANS) -->
+  <div class="video-archive-section" id="archive">
+    <div class="video-archive-inner">
+      <div class="section-label">Video Archive &amp; Insights</div>
+      <div class="archive-grid">
+        
+        <!-- Archive Item: video1.mp4 -->
+        <div class="archive-item">
+          <div class="video-wrapper">
+            <video class="archive-video-thumb" id="archive-video-1" muted playsinline preload="none" controlsList="nodownload">
+              <source src="video1.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <button type="button" class="custom-play-btn archive-play-btn" data-target="archive-video-1" aria-label="Play archive video 1"></button>
+          </div>
+          <div class="archive-info">
+            <div class="archive-title">Architectural Concept &amp; Design</div>
+            <div class="archive-desc">Spatial progression and spatial philosophy.</div>
+          </div>
+        </div>
+
+        <!-- Add more archive items here as you create video3.mp4, video4.mp4, etc. -->
+
+      </div>
+    </div>
+  </div>
+
   <footer class="profile-footer">
     Professional Architects Council &middot; Reg. No. 331
     <div class="reg-line">Republic of Mauritius</div>
   </footer>
 
-  <!-- LIGHTNING FAST HERO PLAYER SCRIPT (NO SEQUENTIAL SCANS) -->
+  <!-- LIGHTNING FAST SCRIPT FOR HERO & ARCHIVE PLAYERS -->
   <script>
+    // Hero Video Control
     const mainVideo = document.getElementById('main-video');
     const mainPlayBtn = document.getElementById('main-play-btn');
 
@@ -717,6 +751,44 @@
         mainPlayBtn.style.display = 'none';
         mainVideo.controls = true;
       }
+    });
+
+    // Archive Video Controls
+    document.querySelectorAll('.archive-play-btn').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        const targetId = e.target.getAttribute('data-target');
+        const archiveVideo = document.getElementById(targetId);
+        
+        archiveVideo.muted = false;
+        archiveVideo.controls = true;
+
+        try {
+          await archiveVideo.play();
+          e.target.style.display = 'none';
+
+          if (window.goatcounter) {
+            window.goatcounter.count({
+              path: `video-play-${targetId}`,
+              title: `Video Play: ${targetId}`,
+              event: true
+            });
+          }
+        } catch (err) {
+          archiveVideo.controls = true;
+        }
+      });
+    });
+
+    document.querySelectorAll('.archive-video-thumb').forEach(vid => {
+      vid.addEventListener('click', function() {
+        if (vid.paused) {
+          vid.muted = false;
+          vid.play();
+          const btn = vid.parentElement.querySelector('.archive-play-btn');
+          if (btn) btn.style.display = 'none';
+          vid.controls = true;
+        }
+      });
     });
   </script>
 
