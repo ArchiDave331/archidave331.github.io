@@ -37,14 +37,14 @@
   <script data-goatcounter="https://archidave331.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
 
-  <!-- STRUCTURED SCHEMA DATA (ALL MAURITIUS + REGIONAL & INTERNATIONAL INVESTORS) -->
+  <!-- STRUCTURED SCHEMA DATA -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ArchitecturalFirm",
     "name": "David H. Marie-Jeanne — Registered Architect 331",
     "url": "https://archidave331.github.io",
-    "description": "Senior Registered Architect in Mauritius (PAC Reg. 331). Cabinet d'architecture et de conception spatiale à l'Île Maurice pour clients locaux et investisseurs internationaux (Réunion, Afrique du Sud, Rodrigues) : villas, PDS/IRS, permis de construire, et suivi de chantier à distance.",
+    "description": "Senior Registered Architect in Mauritius (PAC Reg. 331). Cabinet d'architecture et de conception spatiale à l'Île Maurice pour clients locaux et investisseurs internationaux.",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "MU",
@@ -60,44 +60,8 @@
       { "@type": "Country", "name": "Mauritius" },
       { "@type": "AdministrativeArea", "name": "Rodrigues" },
       { "@type": "Country", "name": "Reunion Island" },
-      { "@type": "Country", "name": "South Africa" },
-      { "@type": "AdministrativeArea", "name": "Riviere du Rempart District" },
-      { "@type": "AdministrativeArea", "name": "Pamplemousses District" },
-      { "@type": "AdministrativeArea", "name": "Port Louis District" },
-      { "@type": "AdministrativeArea", "name": "Plaines Wilhems District" },
-      { "@type": "AdministrativeArea", "name": "Black River District" },
-      { "@type": "AdministrativeArea", "name": "Grand Port District" },
-      { "@type": "AdministrativeArea", "name": "Savanne District" },
-      { "@type": "AdministrativeArea", "name": "Flacq District" },
-      { "@type": "AdministrativeArea", "name": "Moka District" }
-    ],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Architectural & Investment Services",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Master Planning & Villa Design for Foreign Investors"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Remote Project Management & Site Supervision"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Permis de Construire & Regulatory Compliance"
-          }
-        }
-      ]
-    }
+      { "@type": "Country", "name": "South Africa" }
+    ]
   }
   </script>
   
@@ -220,7 +184,6 @@
 
     .btn-icon { font-size: 0.9rem; }
 
-    /* UNIFIED VIDEO SIZES & ACCESSIBLE CENTER PLAY BUTTON OVERLAY */
     .video-section-wrapper {
       width: 100%;
       max-width: 720px;
@@ -238,15 +201,13 @@
       position: relative;
     }
 
-    .video-wrapper video,
-    .archive-video-thumb {
+    .video-wrapper video {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    /* ACCESSIBLE REAL BUTTON PLAY OVERLAY */
     .custom-play-btn {
       position: absolute;
       top: 50%;
@@ -283,9 +244,9 @@
       margin-left: 4px;
     }
 
-    .custom-play-btn:focus-visible {
-      outline: 3px solid var(--accent);
-      outline-offset: 4px;
+    .custom-play-btn.hidden {
+      opacity: 0;
+      pointer-events: none;
     }
 
     .scroll-hint {
@@ -334,12 +295,12 @@
       background: var(--border);
     }
 
-    .services-section {
+    .services-section, .project-types-section {
       background: var(--surface);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
-    .services-inner {
+    .services-inner, .project-types-inner {
       max-width: 960px;
       margin: 0 auto;
       padding: 4rem 1.5rem;
@@ -451,16 +412,6 @@
       color: var(--accent);
     }
 
-    .project-types-section {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .project-types-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 4rem 1.5rem;
-    }
     .type-cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -484,31 +435,6 @@
     .type-card-icon { font-size: 1rem; color: var(--accent); flex-shrink: 0; }
     .type-card-name { font-size: 0.9rem; font-weight: 500; color: var(--text); }
 
-    /* VIDEO ARCHIVE SECTION */
-    .video-archive-section {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .video-archive-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 4rem 1.5rem;
-    }
-    .archive-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-    .archive-item {
-      background: var(--black);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
-      transition: transform 0.3s, border-color 0.3s;
-    }
-    .archive-item:hover { transform: translateY(-2px); border-color: var(--accent); }
-
     .profile-footer {
       text-align: center;
       padding: 3rem 1.5rem;
@@ -516,6 +442,7 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--text-dim);
+      border-top: 1px solid var(--border);
     }
     .profile-footer .reg-line { margin-top: 0.4rem; color: var(--accent); }
 
@@ -532,6 +459,7 @@
 </head>
 <body>
 
+  <!-- HERO SECTION -->
   <header class="hero-section">
     <div class="hero-container">
       <div class="brand-slogan">
@@ -556,7 +484,7 @@
       </div>
     </div>
 
-    <!-- MAIN HERO VIDEO: HARDCODED PRELOAD="NONE" FOR MAXIMUM SPEED -->
+    <!-- HERO VIDEO -->
     <div class="video-section-wrapper">
       <div class="video-wrapper">
         <video id="main-video" muted playsinline preload="none" controlsList="nodownload">
@@ -573,6 +501,7 @@
     </a>
   </header>
 
+  <!-- PROFILE SECTION -->
   <section class="section" id="profile">
     <div class="section-label">Profile</div>
     <p class="profile-text">
@@ -584,6 +513,7 @@
     </p>
   </section>
 
+  <!-- SERVICES SECTION -->
   <div class="services-section">
     <div class="services-inner">
       <div class="section-label">Services</div>
@@ -594,195 +524,4 @@
         <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Design Development</div></div>
         <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Construction Documentation</div></div>
         <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Tender &amp; Contract Administration</div></div>
-        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Remote Site Supervision</div></div>
-        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Project Handover</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="project-types-section">
-    <div class="project-types-inner">
-      <div class="section-label">Project Types</div>
-      <div class="type-cards">
-        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Residential &amp; Private Villas</div></div>
-        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Commercial &amp; Retail</div></div>
-        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Institutional</div></div>
-        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Industrial &amp; Logistics</div></div>
-        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Landscape Projects</div></div>
-        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Interior Design &amp; 3D Modelling</div></div>
-      </div>
-    </div>
-  </div>
-
-  <section class="section">
-    <div class="section-label">Professional Experience</div>
-    <div class="timeline">
-      <div class="timeline-item current">
-        <div class="timeline-dot"></div>
-        <div class="timeline-duration">2026 &ndash; Present</div>
-        <div class="timeline-role">Collaborating Architect</div>
-        <div class="timeline-company">SHELTER STUDIO Ltd, Mauritius</div>
-        <div class="timeline-desc">Managing full architectural stages across residential, commercial, institutional, industrial, landscape, and mixed-use developments in Mauritius.</div>
-      </div>
-
-      <div class="timeline-item current">
-        <div class="timeline-dot"></div>
-        <div class="timeline-duration">2022 &ndash; Present</div>
-        <div class="timeline-role">Collaborating Architect</div>
-        <div class="timeline-company">VISIO Architecture Ltd, Mauritius</div>
-        <div class="timeline-desc">Managing full architectural stages across residential, commercial, institutional, industrial, landscape, and mixed-use developments in Mauritius.</div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-duration">2008 &ndash; 2022</div>
-        <div class="timeline-role">Senior Architect / Project Manager</div>
-        <div class="timeline-company">L&rsquo;Occitane Group, Moscow, Russia</div>
-        <div class="timeline-desc">Led retail and commercial architecture portfolios across major international markets over a 14-year tenure.</div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-duration">2006 &ndash; 2008</div>
-        <div class="timeline-role">Architect</div>
-        <div class="timeline-company">Absida Architects, Moscow, Russia</div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-duration">2004 &ndash; 2006</div>
-        <div class="timeline-role">Architect</div>
-        <div class="timeline-company">Architectural Bureau PLN, Moscow, Russia</div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-duration">2002 &ndash; 2004</div>
-        <div class="timeline-role">Architect</div>
-        <div class="timeline-company">Architectural Lab Olga &amp; Andrei, Moscow, Russia</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-label">Education &amp; Registration</div>
-    <div class="edu-grid">
-      <div class="edu-card">
-        <div class="edu-degree">Master of Architecture (M.Arch)</div>
-        <div class="edu-school">Peoples&rsquo; Friendship University of Russia (RUDN)</div>
-        <div class="edu-years">2002 &ndash; 2004</div>
-      </div>
-      <div class="edu-card">
-        <div class="edu-degree">Bachelor of Architecture (B.Arch)</div>
-        <div class="edu-school">Peoples&rsquo; Friendship University of Russia (RUDN)</div>
-        <div class="edu-years">1997 &ndash; 2002</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- VIDEO ARCHIVE SECTION -->
-  <div class="video-archive-section" id="archive">
-    <div class="video-archive-inner">
-      <div class="section-label">Video Archive &amp; Insights</div>
-      <div class="archive-grid">
-        
-        <!-- Archive Item: video1.mp4 -->
-        <div class="archive-item">
-          <div class="video-wrapper">
-            <video class="archive-video-thumb" id="archive-video-1" muted playsinline preload="none" controlsList="nodownload">
-              <source src="video1.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <button type="button" class="custom-play-btn archive-play-btn" data-target="archive-video-1" aria-label="Play archive video 1"></button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <footer class="profile-footer">
-    Professional Architects Council &middot; Reg. No. 331
-    <div class="reg-line">Republic of Mauritius</div>
-  </footer>
-
-  <!-- LIGHTNING FAST SCRIPT FOR HERO & ARCHIVE PLAYERS -->
-  <script>
-    // Hero Video Control
-    const mainVideo = document.getElementById('main-video');
-    const mainPlayBtn = document.getElementById('main-play-btn');
-
-    mainPlayBtn.addEventListener('click', async () => {
-      mainVideo.muted = false;
-      mainVideo.controls = true;
-
-      try {
-        await mainVideo.play();
-        mainPlayBtn.style.display = 'none';
-
-        if (window.goatcounter) {
-          window.goatcounter.count({
-            path: 'video-play-hero',
-            title: 'Video Play: Hero Video',
-            event: true
-          });
-        }
-      } catch (error) {
-        mainVideo.controls = true;
-      }
-    });
-
-    mainVideo.addEventListener('play', () => {
-      mainPlayBtn.style.display = 'none';
-    });
-
-    mainVideo.addEventListener('click', function() {
-      if (mainVideo.paused) {
-        mainVideo.muted = false;
-        mainVideo.play();
-        mainPlayBtn.style.display = 'none';
-        mainVideo.controls = true;
-      }
-    });
-
-    // Archive Video Controls
-    document.querySelectorAll('.archive-play-btn').forEach(btn => {
-      btn.addEventListener('click', async (e) => {
-        const targetId = e.target.getAttribute('data-target');
-        const archiveVideo = document.getElementById(targetId);
-        
-        archiveVideo.muted = false;
-        archiveVideo.controls = true;
-
-        try {
-          await archiveVideo.play();
-          e.target.style.display = 'none';
-
-          if (window.goatcounter) {
-            window.goatcounter.count({
-              path: `video-play-${targetId}`,
-              title: `Video Play: ${targetId}`,
-              event: true
-            });
-          }
-        } catch (err) {
-          archiveVideo.controls = true;
-        }
-      });
-    });
-
-    document.querySelectorAll('.archive-video-thumb').forEach(vid => {
-      vid.addEventListener('click', function() {
-        if (vid.paused) {
-          vid.muted = false;
-          vid.play();
-          const btn = vid.parentElement.querySelector('.archive-play-btn');
-          if (btn) btn.style.display = 'none';
-          vid.controls = true;
-        }
-      });
-    });
-  </script>
-
-</body>
-</html>
+        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Remote Site Supervision</div>
