@@ -568,7 +568,7 @@
       </div>
     </div>
 
-    <!-- MAIN FEATURED VIDEO (FAST PRELOAD VIA #t=0.3 MEDIA FRAGMENT) -->
+    <!-- MAIN HERO VIDEO: EAGERLY PRELOADED WITH #t=0.3 FOR INSTANT FIRST FRAME -->
     <div class="video-section-wrapper">
       <div class="video-wrapper">
         <video id="main-video" muted playsinline preload="metadata" controlsList="nodownload">
@@ -706,7 +706,7 @@
     <div class="reg-line">Republic of Mauritius</div>
   </footer>
 
-  <!-- AUTOMATIC SCRIPT WITH OPTIMIZED PRELOADING (#t=0.3) & UNMUTE-ON-PLAY -->
+  <!-- SCRIPT: EAGER TOP VIDEO (#t=0.3) + LAZY ARCHIVE VIDEOS -->
   <script>
     async function autoLoadVideos() {
       let existingVideos = [];
@@ -725,7 +725,7 @@
       if (existingVideos.length > 0) {
         existingVideos.sort((a, b) => b - a);
 
-        // Highest number plays at top (Media fragment #t=0.3 fetches 0.3s frame preview)
+        // TOP HERO VIDEO: Loaded immediately with #t=0.3 for instant preview frame
         let topVideoNum = existingVideos[0];
         let mainVideo = document.getElementById('main-video');
         let mainPlayBtn = document.getElementById('main-play-btn');
@@ -765,6 +765,7 @@
         let archiveSection = document.getElementById('archive-section');
         archiveGrid.innerHTML = '';
 
+        // ARCHIVE VIDEOS: Lower down, safe to lazy load or load metadata only
         if (existingVideos.length > 1) {
           archiveSection.style.display = 'block';
           for (let j = 1; j < existingVideos.length; j++) {
@@ -772,7 +773,7 @@
             archiveGrid.innerHTML += `
               <div class="archive-item">
                 <div class="video-wrapper">
-                  <video class="archive-video-thumb archive-vid-${vNum}" muted playsinline preload="metadata" controlsList="nodownload">
+                  <video class="archive-video-thumb archive-vid-${vNum}" muted playsinline preload="none" controlsList="nodownload">
                     <source src="video${vNum}.mp4#t=0.3" type="video/mp4">
                   </video>
                   <div class="custom-play-btn archive-play-btn-${vNum}" title="Play Video"></div>
@@ -785,7 +786,7 @@
             `;
           }
 
-          // Wire up archive play buttons (removes fragment, unmutes, & plays)
+          // Wire up archive play buttons
           for (let j = 1; j < existingVideos.length; j++) {
             let vNum = existingVideos[j];
             let thumbVideo = document.querySelector(`.archive-vid-${vNum}`);
