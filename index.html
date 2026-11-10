@@ -559,10 +559,10 @@
       </div>
     </div>
 
-    <!-- MAIN FEATURED VIDEO WITH CUSTOM CENTER PLAY OVERLAY -->
+    <!-- MAIN FEATURED VIDEO (FAST PRELOAD VIA #t=0.1 MEDIA FRAGMENT) -->
     <div class="video-section-wrapper">
       <div class="video-wrapper">
-        <video id="main-video" muted playsinline controlsList="nodownload">
+        <video id="main-video" muted playsinline preload="metadata" controlsList="nodownload">
           Your browser does not support the video tag.
         </video>
         <div class="custom-play-btn" id="main-play-btn" title="Play Video"></div>
@@ -697,7 +697,7 @@
     <div class="reg-line">Republic of Mauritius</div>
   </footer>
 
-  <!-- AUTOMATIC SCRIPT WITH UNMUTE-ON-PLAY FUNCTIONALITY -->
+  <!-- AUTOMATIC SCRIPT WITH OPTIMIZED PRELOADING & UNMUTE-ON-PLAY -->
   <script>
     async function autoLoadVideos() {
       let existingVideos = [];
@@ -716,16 +716,18 @@
       if (existingVideos.length > 0) {
         existingVideos.sort((a, b) => b - a);
 
-        // Highest number plays at the top hero section
+        // Highest number plays at the top hero section (Media fragment #t=0.1 loads 1st second only)
         let topVideoNum = existingVideos[0];
         let mainVideo = document.getElementById('main-video');
         let mainPlayBtn = document.getElementById('main-play-btn');
 
-        mainVideo.innerHTML = `<source src="video${topVideoNum}.mp4" type="video/mp4">Your browser does not support the video tag.`;
+        mainVideo.innerHTML = `<source src="video${topVideoNum}.mp4#t=0.1" type="video/mp4">Your browser does not support the video tag.`;
         mainVideo.load();
 
-        // Custom center play button interaction for main hero video (unmutes on play)
+        // Custom center play button interaction (removes media fragment, unmutes, and starts full playback)
         mainPlayBtn.addEventListener('click', function() {
+          mainVideo.innerHTML = `<source src="video${topVideoNum}.mp4" type="video/mp4">`;
+          mainVideo.load();
           mainVideo.muted = false;
           mainVideo.controls = true;
           mainVideo.play();
@@ -762,8 +764,8 @@
             archiveGrid.innerHTML += `
               <div class="archive-item">
                 <div class="video-wrapper">
-                  <video class="archive-video-thumb archive-vid-${vNum}" muted playsinline controlsList="nodownload">
-                    <source src="video${vNum}.mp4" type="video/mp4">
+                  <video class="archive-video-thumb archive-vid-${vNum}" muted playsinline preload="metadata" controlsList="nodownload">
+                    <source src="video${vNum}.mp4#t=0.1" type="video/mp4">
                   </video>
                   <div class="custom-play-btn archive-play-btn-${vNum}" title="Play Video"></div>
                 </div>
@@ -783,6 +785,8 @@
 
             if (thumbVideo && thumbBtn) {
               thumbBtn.addEventListener('click', function() {
+                thumbVideo.innerHTML = `<source src="video${vNum}.mp4" type="video/mp4">`;
+                thumbVideo.load();
                 thumbVideo.muted = false;
                 thumbVideo.controls = true;
                 thumbVideo.play();
