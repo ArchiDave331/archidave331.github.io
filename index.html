@@ -581,7 +581,7 @@
       Senior Registered Architect (PAC Reg. No. 331) with over 20 years of international and local experience
       across residential, commercial, institutional, industrial, and landscape projects.
       Specializing in full-service architectural management for local clients and international investors
-      (South Africa, Réunion Island, Rodrigues, and Europe)—offering complete remote project monitoring, 3D visualization,
+      (South Africa, Réunion Island, Rodrigues, and Europe)&mdash;offering complete remote project monitoring, 3D visualization,
       and local regulatory approval handling to turn spatial visions into compliant, enduring realities.
     </p>
   </section>
@@ -697,7 +697,7 @@
     <div class="reg-line">Republic of Mauritius</div>
   </footer>
 
-  <!-- AUTOMATIC SCRIPT WITH CENTER PLAY BUTTON FUNCTIONALITY -->
+  <!-- AUTOMATIC SCRIPT WITH UNMUTE-ON-PLAY FUNCTIONALITY -->
   <script>
     async function autoLoadVideos() {
       let existingVideos = [];
@@ -724,8 +724,9 @@
         mainVideo.innerHTML = `<source src="video${topVideoNum}.mp4" type="video/mp4">Your browser does not support the video tag.`;
         mainVideo.load();
 
-        // Custom center play button interaction for main hero video
+        // Custom center play button interaction for main hero video (unmutes on play)
         mainPlayBtn.addEventListener('click', function() {
+          mainVideo.muted = false;
           mainVideo.controls = true;
           mainVideo.play();
           mainPlayBtn.style.display = 'none';
@@ -740,9 +741,10 @@
           }
         });
 
-        // Also allow clicking the video itself to play if paused
+        // Allow clicking the video itself to play & unmute if paused
         mainVideo.addEventListener('click', function() {
           if (mainVideo.paused) {
+            mainVideo.muted = false;
             mainVideo.play();
             mainPlayBtn.style.display = 'none';
             mainVideo.controls = true;
@@ -773,7 +775,7 @@
             `;
           }
 
-          // Track and wire up archive video buttons
+          // Track and wire up archive video buttons (unmutes on play)
           for (let j = 1; j < existingVideos.length; j++) {
             let vNum = existingVideos[j];
             let thumbVideo = document.querySelector(`.archive-vid-${vNum}`);
@@ -781,6 +783,7 @@
 
             if (thumbVideo && thumbBtn) {
               thumbBtn.addEventListener('click', function() {
+                thumbVideo.muted = false;
                 thumbVideo.controls = true;
                 thumbVideo.play();
                 thumbBtn.style.display = 'none';
@@ -796,6 +799,7 @@
 
               thumbVideo.addEventListener('click', function() {
                 if (thumbVideo.paused) {
+                  thumbVideo.muted = false;
                   thumbVideo.play();
                   thumbBtn.style.display = 'none';
                   thumbVideo.controls = true;
