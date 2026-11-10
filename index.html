@@ -524,4 +524,91 @@
         <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Design Development</div></div>
         <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Construction Documentation</div></div>
         <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Tender &amp; Contract Administration</div></div>
-        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Remote Site Supervision</div>
+        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Remote Site Supervision</div></div>
+        <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Project Handover</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT TYPES SECTION -->
+  <div class="project-types-section">
+    <div class="project-types-inner">
+      <div class="section-label">Project Types</div>
+      <div class="type-cards">
+        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Residential &amp; Private Villas</div></div>
+        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Commercial &amp; Retail</div></div>
+        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Institutional &amp; Civic</div></div>
+        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Industrial &amp; Warehousing</div></div>
+        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Hospitality &amp; Resorts</div></div>
+        <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Landscape &amp; Urban Design</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE / TIMELINE SECTION -->
+  <section class="section">
+    <div class="section-label">Professional Experience</div>
+    <div class="timeline">
+      <div class="timeline-item current">
+        <div class="timeline-dot"></div>
+        <div class="timeline-duration">2005 &mdash; Present</div>
+        <div class="timeline-role">Principal &amp; Senior Registered Architect</div>
+        <div class="timeline-company">Cabinet d'Architecture David H. Marie-Jeanne</div>
+        <div class="timeline-desc">Leading architectural design, regulatory approvals, and remote site supervision across Mauritius and the Indian Ocean region for private clients and foreign investors.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-duration">2001 &mdash; 2005</div>
+        <div class="timeline-role">Project Architect</div>
+        <div class="timeline-company">International Design Practices</div>
+        <div class="timeline-desc">Managed large-scale commercial and residential development portfolios, coordinating multi-disciplinary engineering teams and contract administration.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION SECTION -->
+  <section class="section">
+    <div class="section-label">Education &amp; Accreditation</div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-degree">Professional Architecture Degree</div>
+        <div class="edu-school">Accredited School of Architecture</div>
+        <div class="edu-years">Graduated</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">PAC Registration No. 331</div>
+        <div class="edu-school">Professional Architects Council Mauritius</div>
+        <div class="edu-years">Registered Senior Architect</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="profile-footer">
+    <div>&copy; 2026 David H. Marie-Jeanne. All Rights Reserved.</div>
+    <div class="reg-line">PAC Registered Architect No. 331 &bull; Mauritius</div>
+  </footer>
+
+  <!-- JAVASCRIPT FOR VIDEO PLAYBACK -->
+  <script>
+    const video = document.getElementById('main-video');
+    const playBtn = document.getElementById('main-play-btn');
+
+    playBtn.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+        video.controls = true;
+        playBtn.classList.add('hidden');
+      } else {
+        video.pause();
+        playBtn.classList.remove('hidden');
+      }
+    });
+
+    video.addEventListener('ended', () => {
+      playBtn.classList.remove('hidden');
+      video.controls = false;
+    });
+  </script>
+</body>
+</html>
