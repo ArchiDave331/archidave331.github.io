@@ -622,4 +622,164 @@
         <div class="timeline-duration">2026 &ndash; Present</div>
         <div class="timeline-role">Collaborating Architect</div>
         <div class="timeline-company">SHELTER STUDIO Ltd, Mauritius</div>
-        <div class="timeline-desc">Managing full architectural stages across residential,
+        <div class="timeline-desc">Managing full architectural stages across residential, commercial, institutional, industrial, landscape, and mixed-use developments in Mauritius.</div>
+      </div>
+
+      <div class="timeline-item current">
+        <div class="timeline-dot"></div>
+        <div class="timeline-duration">2022 &ndash; Present</div>
+        <div class="timeline-role">Collaborating Architect</div>
+        <div class="timeline-company">VISIO Architecture Ltd, Mauritius</div>
+        <div class="timeline-desc">Managing full architectural stages across residential, commercial, institutional, industrial, landscape, and mixed-use developments in Mauritius.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-duration">2008 &ndash; 2022</div>
+        <div class="timeline-role">Senior Architect / Project Manager</div>
+        <div class="timeline-company">L&rsquo;Occitane Group, Moscow, Russia</div>
+        <div class="timeline-desc">Led retail and commercial architecture portfolios across major international markets over a 14-year tenure.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-duration">2006 &ndash; 2008</div>
+        <div class="timeline-role">Architect</div>
+        <div class="timeline-company">Absida Architects, Moscow, Russia</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-duration">2004 &ndash; 2006</div>
+        <div class="timeline-role">Architect</div>
+        <div class="timeline-company">Architectural Bureau PLN, Moscow, Russia</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-duration">2002 &ndash; 2004</div>
+        <div class="timeline-role">Architect</div>
+        <div class="timeline-company">Architectural Lab Olga &amp; Andrei, Moscow, Russia</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-label">Education &amp; Registration</div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-degree">Master of Architecture (M.Arch)</div>
+        <div class="edu-school">Peoples&rsquo; Friendship University of Russia (RUDN)</div>
+        <div class="edu-years">2002 &ndash; 2004</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">Bachelor of Architecture (B.Arch)</div>
+        <div class="edu-school">Peoples&rsquo; Friendship University of Russia (RUDN)</div>
+        <div class="edu-years">1997 &ndash; 2002</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO ARCHIVE SECTION -->
+  <div class="video-archive-section" id="archive">
+    <div class="video-archive-inner">
+      <div class="section-label">Video Archive &amp; Insights</div>
+      <div class="archive-grid">
+        
+        <!-- Archive Item: video1.mp4 -->
+        <div class="archive-item">
+          <div class="video-wrapper">
+            <video class="archive-video-thumb" id="archive-video-1" muted playsinline preload="none" controlsList="nodownload">
+              <source src="video1.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <button type="button" class="custom-play-btn archive-play-btn" data-target="archive-video-1" aria-label="Play archive video 1"></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="profile-footer">
+    Professional Architects Council &middot; Reg. No. 331
+    <div class="reg-line">Republic of Mauritius</div>
+  </footer>
+
+  <!-- UNIVERSAL PLAYBACK SCRIPT (COMPATIBLE WITH FACEBOOK & IN-APP BROWSERS) -->
+  <script>
+    // Hero Video Control
+    const mainVideo = document.getElementById('main-video');
+    const mainPlayBtn = document.getElementById('main-play-btn');
+
+    function playMainVideo() {
+      mainVideo.muted = false;
+      mainVideo.controls = true;
+      mainPlayBtn.style.display = 'none';
+
+      var playPromise = mainVideo.play();
+      if (playPromise !== undefined) {
+        playPromise.then(function() {
+          if (window.goatcounter) {
+            window.goatcounter.count({
+              path: 'video-play-hero',
+              title: 'Video Play: Hero Video',
+              event: true
+            });
+          }
+        }).catch(function(error) {
+          mainVideo.controls = true;
+        });
+      }
+    }
+
+    mainPlayBtn.addEventListener('click', playMainVideo);
+    mainVideo.addEventListener('click', playMainVideo);
+
+    mainVideo.addEventListener('play', function() {
+      mainPlayBtn.style.display = 'none';
+      mainVideo.controls = true;
+    });
+
+    // Archive Video Controls
+    document.querySelectorAll('.archive-play-btn').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        var targetId = e.target.getAttribute('data-target');
+        var archiveVideo = document.getElementById(targetId);
+        
+        archiveVideo.muted = false;
+        archiveVideo.controls = true;
+        e.target.style.display = 'none';
+
+        var playPromise = archiveVideo.play();
+        if (playPromise !== undefined) {
+          playPromise.then(function() {
+            if (window.goatcounter) {
+              window.goatcounter.count({
+                path: 'video-play-' + targetId,
+                title: 'Video Play: ' + targetId,
+                event: true
+              });
+            }
+          }).catch(function(err) {
+            archiveVideo.controls = true;
+          });
+        }
+      });
+    });
+
+    document.querySelectorAll('.archive-video-thumb').forEach(function(vid) {
+      vid.addEventListener('click', function() {
+        if (vid.paused) {
+          vid.muted = false;
+          vid.controls = true;
+          var btn = vid.parentElement.querySelector('.archive-play-btn');
+          if (btn) btn.style.display = 'none';
+          vid.play();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
