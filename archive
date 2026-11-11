@@ -367,7 +367,7 @@
     .service-icon { font-size: 1.1rem; color: var(--accent); flex-shrink: 0; width: 1.5rem; text-align: center; }
     .service-name { font-size: 0.9rem; font-weight: 500; color: var(--text); line-height: 1.4; }
 
-    .profile-text {
+    .profile-text, .team-text {
       font-size: 1.05rem;
       line-height: 1.85;
       color: var(--text-muted);
@@ -451,6 +451,41 @@
       color: var(--accent);
     }
 
+    /* TEAM 3:4 PORTRAIT PHOTO GRID */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .team-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .team-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .team-img-wrapper {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background: #1a1a1a;
+      overflow: hidden;
+      position: relative;
+    }
+    .team-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .team-info {
+      padding: 1.2rem;
+      text-align: center;
+    }
+    .team-name { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
+    .team-title { font-size: 0.75rem; color: var(--accent); letter-spacing: 0.05em; text-transform: uppercase; }
+
     .project-types-section {
       background: var(--surface);
       border-top: 1px solid var(--border);
@@ -520,11 +555,11 @@
     .profile-footer .reg-line { margin-top: 0.4rem; color: var(--accent); }
 
     @media (max-width: 900px) {
-      .services-grid, .type-cards { grid-template-columns: repeat(2, 1fr); }
+      .services-grid, .type-cards, .team-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 640px) {
       html { font-size: 15px; }
-      .services-grid, .type-cards { grid-template-columns: 1fr; gap: 0.85rem; }
+      .services-grid, .type-cards, .team-grid { grid-template-columns: 1fr; gap: 0.85rem; }
       .brand-slogan { font-size: 1rem; }
       .brand-identity h1 { font-size: 1.5rem; }
     }
@@ -680,6 +715,48 @@
     </div>
   </section>
 
+  <!-- TEAM SECTION -->
+  <section class="section" id="team">
+    <div class="section-label">Team</div>
+    <p class="team-text">
+      For massive and multi-disciplinary developments, I lead an integrated project consortium alongside key strategic partners: 
+      <strong>Shelter Studio</strong> with Mr. Arshaad KHODABUCCUS, Architect HMONP, Director; 
+      and <strong>Beauhome Studio Ltd</strong> with Mr. Abdel SOODHOO, Lead Interior Designer, Director&mdash;providing complete turnkey design-build capability for large-scale operations.
+    </p>
+    <div class="team-grid">
+      <!-- Team Member 1 -->
+      <div class="team-card">
+        <div class="team-img-wrapper">
+          <img src="team1.jpg" alt="Mr. David H. MARIE-JEANNE" loading="lazy">
+        </div>
+        <div class="team-info">
+          <div class="team-name">Mr. David H. MARIE-JEANNE</div>
+          <div class="team-title">Architect M.Arch, Director (ARCHITECT 331)</div>
+        </div>
+      </div>
+      <!-- Team Member 2 -->
+      <div class="team-card">
+        <div class="team-img-wrapper">
+          <img src="team2.jpg" alt="Mr. Arshaad KHODABUCCUS" loading="lazy">
+        </div>
+        <div class="team-info">
+          <div class="team-name">Mr. Arshaad KHODABUCCUS</div>
+          <div class="team-title">Architect HMONP, Director (Shelter Studio)</div>
+        </div>
+      </div>
+      <!-- Team Member 3 -->
+      <div class="team-card">
+        <div class="team-img-wrapper">
+          <img src="team3.jpg" alt="Mr. Abdel SOODHOO" loading="lazy">
+        </div>
+        <div class="team-info">
+          <div class="team-name">Mr. Abdel SOODHOO</div>
+          <div class="team-title">Lead Interior Designer, Director (Beauhome Studio)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- VIDEO ARCHIVE SECTION -->
   <div class="video-archive-section" id="archive">
     <div class="video-archive-inner">
@@ -706,79 +783,76 @@
     <div class="reg-line">Republic of Mauritius</div>
   </footer>
 
-  <!-- LIGHTNING FAST SCRIPT FOR HERO & ARCHIVE PLAYERS -->
+  <!-- UNIVERSAL PLAYBACK SCRIPT (COMPATIBLE WITH FACEBOOK & IN-APP BROWSERS) -->
   <script>
     // Hero Video Control
     const mainVideo = document.getElementById('main-video');
     const mainPlayBtn = document.getElementById('main-play-btn');
 
-    mainPlayBtn.addEventListener('click', async () => {
+    function playMainVideo() {
       mainVideo.muted = false;
       mainVideo.controls = true;
-
-      try {
-        await mainVideo.play();
-        mainPlayBtn.style.display = 'none';
-
-        if (window.goatcounter) {
-          window.goatcounter.count({
-            path: 'video-play-hero',
-            title: 'Video Play: Hero Video',
-            event: true
-          });
-        }
-      } catch (error) {
-        mainVideo.controls = true;
-      }
-    });
-
-    mainVideo.addEventListener('play', () => {
       mainPlayBtn.style.display = 'none';
-    });
 
-    mainVideo.addEventListener('click', function() {
-      if (mainVideo.paused) {
-        mainVideo.muted = false;
-        mainVideo.play();
-        mainPlayBtn.style.display = 'none';
-        mainVideo.controls = true;
-      }
-    });
-
-    // Archive Video Controls
-    document.querySelectorAll('.archive-play-btn').forEach(btn => {
-      btn.addEventListener('click', async (e) => {
-        const targetId = e.target.getAttribute('data-target');
-        const archiveVideo = document.getElementById(targetId);
-        
-        archiveVideo.muted = false;
-        archiveVideo.controls = true;
-
-        try {
-          await archiveVideo.play();
-          e.target.style.display = 'none';
-
+      var playPromise = mainVideo.play();
+      if (playPromise !== undefined) {
+        playPromise.then(function() {
           if (window.goatcounter) {
             window.goatcounter.count({
-              path: `video-play-${targetId}`,
-              title: `Video Play: ${targetId}`,
+              path: 'video-play-hero',
+              title: 'Video Play: Hero Video',
               event: true
             });
           }
-        } catch (err) {
-          archiveVideo.controls = true;
+        }).catch(function(error) {
+          mainVideo.controls = true;
+        });
+      }
+    }
+
+    mainPlayBtn.addEventListener('click', playMainVideo);
+    mainVideo.addEventListener('click', playMainVideo);
+
+    mainVideo.addEventListener('play', function() {
+      mainPlayBtn.style.display = 'none';
+      mainVideo.controls = true;
+    });
+
+    // Archive Video Controls
+    document.querySelectorAll('.archive-play-btn').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        var targetId = e.target.getAttribute('data-target');
+        var archiveVideo = document.getElementById(targetId);
+        
+        archiveVideo.muted = false;
+        archiveVideo.controls = true;
+        e.target.style.display = 'none';
+
+        var playPromise = archiveVideo.play();
+        if (playPromise !== undefined) {
+          playPromise.then(function() {
+            if (window.goatcounter) {
+              window.goatcounter.count({
+                path: 'video-play-' + targetId,
+                title: 'Video Play: ' + targetId,
+                event: true
+              });
+            }
+          }).catch(function(err) {
+            archiveVideo.controls = true;
+          });
         }
       });
     });
 
-    document.querySelectorAll('.archive-video-thumb').forEach(vid => {
+    document.querySelectorAll('.archive-video-thumb').forEach(function(vid) {
       vid.addEventListener('click', function() {
         if (vid.paused) {
           vid.muted = false;
-          vid.play();
-          const btn = vid.parentElement.querySelector('.archive-play-btn');
-          if (btn) btn.style.display = 'none';
           vid.controls = true;
+          var btn = vid.parentElement.querySelector('.archive-play-btn');
+          if (btn) btn.style.display = 'none';
+          vid.play();
         }
       });
     });
