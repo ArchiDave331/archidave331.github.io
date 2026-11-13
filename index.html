@@ -300,6 +300,43 @@
       outline-offset: 4px;
     }
 
+    /* END-OF-VIDEO OVERLAY BUTTON */
+    .video-end-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(5, 5, 5, 0.85);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+    }
+    .video-end-overlay h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+      font-weight: 400;
+    }
+    .btn-next-video {
+      padding: 10px 20px;
+      background: var(--accent);
+      color: var(--black);
+      border: none;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .btn-next-video:hover {
+      transform: scale(1.05);
+      background: #ffffff;
+    }
+
     .scroll-hint {
       display: flex;
       flex-direction: column;
@@ -533,7 +570,7 @@
     .type-card-icon { font-size: 1rem; color: var(--accent); flex-shrink: 0; }
     .type-card-name { font-size: 0.9rem; font-weight: 500; color: var(--text); }
 
-    /* VIDEO ARCHIVE SECTION */
+    /* SCROLLABLE VIDEO ARCHIVE ROW */
     .video-archive-section {
       background: var(--surface);
       border-top: 1px solid var(--border);
@@ -544,12 +581,28 @@
       margin: 0 auto;
       padding: 4rem 1.5rem;
     }
-    .archive-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    .archive-scroll-container {
+      display: flex;
       gap: 1.5rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 1rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) var(--surface);
+    }
+    .archive-scroll-container::-webkit-scrollbar {
+      height: 6px;
+    }
+    .archive-scroll-container::-webkit-scrollbar-track {
+      background: var(--surface);
+    }
+    .archive-scroll-container::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 3px;
     }
     .archive-item {
+      flex: 0 0 320px;
+      scroll-snap-align: start;
       background: var(--black);
       border: 1px solid var(--border);
       border-radius: 6px;
@@ -557,6 +610,16 @@
       transition: transform 0.3s, border-color 0.3s;
     }
     .archive-item:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .archive-title {
+      padding: 0.8rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
     .profile-footer {
       text-align: center;
@@ -606,14 +669,20 @@
       </div>
     </div>
 
-    <!-- MAIN HERO VIDEO: HARDCODED PRELOAD="NONE" FOR MAXIMUM SPEED -->
+    <!-- MAIN HERO VIDEO -->
     <div class="video-section-wrapper">
       <div class="video-wrapper">
-        <video id="main-video" muted playsinline preload="none" controlsList="nodownload">
+        <video id="main-video" muted playsinline preload="metadata" poster="hero-thumb.jpg" controlsList="nodownload">
           <source src="video2.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
         <button type="button" class="custom-play-btn" id="main-play-btn" aria-label="Play introduction video"></button>
+        
+        <!-- End of Video Overlay -->
+        <div class="video-end-overlay" id="main-video-end">
+          <h4>Designing for Better Living</h4>
+          <button type="button" class="btn-next-video" id="main-next-btn">Play Next Video ➔</button>
+        </div>
       </div>
     </div>
 
@@ -772,17 +841,50 @@
   <div class="video-archive-section" id="archive">
     <div class="video-archive-inner">
       <div class="section-label">Video Archive &amp; Insights</div>
-      <div class="archive-grid">
+      <div class="archive-scroll-container">
         
-        <!-- Archive Item: video1.mp4 -->
+        <!-- Video 1 -->
         <div class="archive-item">
           <div class="video-wrapper">
-            <video class="archive-video-thumb" id="archive-video-1" muted playsinline preload="none" controlsList="nodownload">
+            <video class="archive-video-thumb" id="archive-video-1" muted playsinline preload="metadata" poster="thumb1.jpg" controlsList="nodownload">
               <source src="video1.mp4" type="video/mp4">
-              Your browser does not support the video tag.
             </video>
-            <button type="button" class="custom-play-btn archive-play-btn" data-target="archive-video-1" aria-label="Play archive video 1"></button>
+            <button type="button" class="custom-play-btn archive-play-btn" data-target="archive-video-1" aria-label="Play video"></button>
           </div>
+          <div class="archive-title">The Vision of Architecture</div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="archive-item">
+          <div class="video-wrapper">
+            <video class="archive-video-thumb" id="archive-video-2" muted playsinline preload="metadata" poster="hero-thumb.jpg" controlsList="nodownload">
+              <source src="video2.mp4" type="video/mp4">
+            </video>
+            <button type="button" class="custom-play-btn archive-play-btn" data-target="archive-video-2" aria-label="Play video"></button>
+          </div>
+          <div class="archive-title">Designing for Better Living</div>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="archive-item">
+          <div class="video-wrapper">
+            <video class="archive-video-thumb" id="archive-video-3" muted playsinline preload="metadata" poster="thumb3.jpg" controlsList="nodownload">
+              <source src="video3.mp4" type="video/mp4">
+            </video>
+            <button type="button" class="custom-play-btn archive-play-btn" data-target="archive-video-3" aria-label="Play video"></button>
+          </div>
+          <div class="archive-title">The Experience of Interior Spaces</div>
+        </div>
+
+        <!-- Video 4 -->
+        <div class="archive-item">
+          <div class="video-wrapper">
+            <video class="archive-video-thumb" id="archive-video-4" muted playsinline preload="metadata" poster="thumb4.jpg" controlsList="nodownload">
+              <source src="video4.mp4" type="video/mp4">
+            </video>
+            <button type="button" class="custom-play-btn archive-play-btn" data-target="archive-video-4" aria-label="Play video"></button>
+          </div>
+          <div class="archive-title">Land Development &amp; Feasibility</div>
         </div>
 
       </div>
@@ -794,78 +896,89 @@
     <div class="reg-line">Republic of Mauritius</div>
   </footer>
 
-  <!-- UNIVERSAL PLAYBACK SCRIPT (COMPATIBLE WITH FACEBOOK & IN-APP BROWSERS) -->
+  <!-- UNIVERSAL PLAYBACK SCRIPT -->
   <script>
-    // Hero Video Control
-    const mainVideo = document.getElementById('main-video');
-    const mainPlayBtn = document.getElementById('main-play-btn');
+    document.addEventListener('DOMContentLoaded', function() {
+      const mainVideo = document.getElementById('main-video');
+      const mainPlayBtn = document.getElementById('main-play-btn');
+      const mainEndOverlay = document.getElementById('main-video-end');
+      const mainNextBtn = document.getElementById('main-next-btn');
 
-    function playMainVideo() {
-      mainVideo.muted = false;
-      mainVideo.controls = true;
-      mainPlayBtn.style.display = 'none';
+      // Play Hero Video with Sound
+      function playMainVideo() {
+        mainVideo.muted = false;
+        mainVideo.controls = true;
+        mainPlayBtn.style.display = 'none';
+        mainEndOverlay.style.display = 'none';
 
-      var playPromise = mainVideo.play();
-      if (playPromise !== undefined) {
-        playPromise.then(function() {
+        mainVideo.play().then(() => {
           if (window.goatcounter) {
-            window.goatcounter.count({
-              path: 'video-play-hero',
-              title: 'Video Play: Hero Video',
-              event: true
-            });
+            window.goatcounter.count({ path: 'video-play-hero', title: 'Video Play: Hero Video', event: true });
           }
-        }).catch(function(error) {
+        }).catch(() => {
           mainVideo.controls = true;
         });
       }
-    }
 
-    mainPlayBtn.addEventListener('click', playMainVideo);
-    mainVideo.addEventListener('click', playMainVideo);
+      mainPlayBtn.addEventListener('click', playMainVideo);
+      mainVideo.addEventListener('click', () => { if(mainVideo.paused) playMainVideo(); });
 
-    mainVideo.addEventListener('play', function() {
-      mainPlayBtn.style.display = 'none';
-      mainVideo.controls = true;
-    });
+      // When Hero Video Ends
+      mainVideo.addEventListener('ended', function() {
+        mainVideo.controls = false;
+        mainEndOverlay.style.display = 'flex';
+      });
 
-    // Archive Video Controls
-    document.querySelectorAll('.archive-play-btn').forEach(function(btn) {
-      btn.addEventListener('click', function(e) {
-        var targetId = e.target.getAttribute('data-target');
-        var archiveVideo = document.getElementById(targetId);
-        
-        archiveVideo.muted = false;
-        archiveVideo.controls = true;
-        e.target.style.display = 'none';
-
-        var playPromise = archiveVideo.play();
-        if (playPromise !== undefined) {
-          playPromise.then(function() {
-            if (window.goatcounter) {
-              window.goatcounter.count({
-                path: 'video-play-' + targetId,
-                title: 'Video Play: ' + targetId,
-                event: true
-              });
-            }
-          }).catch(function(err) {
-            archiveVideo.controls = true;
-          });
+      // Next Video Action
+      mainNextBtn.addEventListener('click', function() {
+        mainEndOverlay.style.display = 'none';
+        const firstArchiveVid = document.getElementById('archive-video-1');
+        if (firstArchiveVid) {
+          document.getElementById('archive').scrollIntoView({ behavior: 'smooth' });
+          firstArchiveVid.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       });
-    });
 
-    document.querySelectorAll('.archive-video-thumb').forEach(function(vid) {
-      vid.addEventListener('click', function() {
-        if (vid.paused) {
-          vid.muted = false;
-          vid.controls = true;
-          var btn = vid.parentElement.querySelector('.archive-play-btn');
-          if (btn) btn.style.display = 'none';
-          vid.play();
-        }
+      // Archive Videos Playback & Sequence Handling
+      const archiveVideos = document.querySelectorAll('.archive-video-thumb');
+      
+      archiveVideos.forEach((vid, index) => {
+        const wrapper = vid.closest('.video-wrapper');
+        const playBtn = wrapper.querySelector('.archive-play-btn');
+
+        playBtn.addEventListener('click', function() {
+          startArchiveVideo(vid, playBtn);
+        });
+
+        vid.addEventListener('click', function() {
+          if (vid.paused) startArchiveVideo(vid, playBtn);
+        });
+
+        // Auto-advance to next archive video when current one finishes
+        vid.addEventListener('ended', function() {
+          vid.controls = false;
+          const nextVid = archiveVideos[index + 1];
+          if (nextVid) {
+            nextVid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            const nextBtn = nextVid.closest('.video-wrapper').querySelector('.archive-play-btn');
+            setTimeout(() => startArchiveVideo(nextVid, nextBtn), 500);
+          }
+        });
       });
+
+      function startArchiveVideo(vidElement, btnElement) {
+        vidElement.muted = false;
+        vidElement.controls = true;
+        if (btnElement) btnElement.style.display = 'none';
+
+        vidElement.play().then(() => {
+          if (window.goatcounter) {
+            window.goatcounter.count({ path: 'video-play-' + vidElement.id, title: 'Video Play: ' + vidElement.id, event: true });
+          }
+        }).catch(() => {
+          vidElement.controls = true;
+        });
+      }
     });
   </script>
 
