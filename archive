@@ -7,8 +7,8 @@
   <!-- PRIMARY BROWSER TAB TITLE & SEO META TAGS -->
   <title>ARCHITECT 331</title>
   <meta name="title" content="ARCHITECT 331">
-  <meta name="description" content="Senior Registered Architect in Mauritius (PAC Reg. 331). Architectural design, master planning, and remote construction management for local clients and investors from South Africa, Réunion Island, and Rodrigues.">
-  <meta name="keywords" content="Architecte Maurice, Architect Mauritius, Registered Architect Mauritius, South Africa Architect Mauritius, Architecte Réunion Maurice, Architecte Rodrigues, Plan de maison Maurice, Permis de construire Maurice, PDS Villa Architect, PAC Reg 331, Spatial Planning, Master Planning Mauritius">
+  <meta name="description" content="Senior Registered Architect in Mauritius (PAC Reg. 331). Architectural design, master planning, and construction management.">
+  <meta name="keywords" content="architect, architects, architecte, architectes, architecture, cabinet d'architecture, architectural firm, architectural services, architect mauritius, architecte maurice, architecte Île maurice, registered architect mauritius, senior architect mauritius, pac reg 331, blp, blup, building and land use permit mauritius, permis de construire, permis de construire maurice, house plan mauritius, plan de maison, plan de villa maurice, villa design mauritius, modern villa design, residential architect mauritius, building construction, construction management mauritius, site supervision mauritius, suivi de chantier maurice, cost to build a house in mauritius, construction price per square meter mauritius, prix construction maison ile maurice, devis construction maison maurice, combien coute construire une maison a maurice, building contractor mauritius, construction company mauritius, entrepreneur batiment ile maurice, quantity surveyor mauritius, civil engineer mauritius, macon maurice, plan dessinateur maurice, etude de sol maurice, soil test mauritius, modern house plan mauritius, 3 bedroom house plan mauritius, plan maison 3 chambres maurice, flat roof house design mauritius, cyclone proof house design mauritius, outdoor kitchen design mauritius, quincaillerie mauritius, building materials mauritius, prix bloc maurice, concrete blocks price mauritius, prix ferraille maurice, cement price mauritius, waterproofing contractor mauritius, etancheite toit maurice, aluminium windows mauritius, tiles shop mauritius, carrelage ile maurice, construire lakaz moris, prix fer lakaz moris, pe rod entrepreneur pou fer lakaz, devis lakaz moris">
 
   <!-- GEOGRAPHIC & LANGUAGE TAGS -->
   <meta http-equiv="content-language" content="en, fr">
@@ -26,7 +26,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://archidave331.github.io/">
   <meta property="og:title" content="ARCHITECT 331">
-  <meta property="og:description" content="Cabinet d'architecture & spatial planning à l'Île Maurice. Architectural management for local & international investors.">
+  <meta property="og:description" content="Cabinet d'architecture & spatial planning à l'Île Maurice. Architectural management and design.">
 
   <!-- SPEED PRECONNECT FOR FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,14 +37,28 @@
   <script data-goatcounter="https://archidave331.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
 
-  <!-- STRUCTURED SCHEMA DATA (ALL MAURITIUS + REGIONAL & INTERNATIONAL INVESTORS) -->
+  <!-- STRUCTURED SCHEMA DATA -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ArchitecturalFirm",
     "name": "David H. Marie-Jeanne — Registered Architect 331",
+    "alternateName": [
+      "Architect 331", 
+      "Architecte 331", 
+      "Architecte Maurice", 
+      "BLP Architect Mauritius"
+    ],
     "url": "https://archidave331.github.io",
-    "description": "Senior Registered Architect in Mauritius (PAC Reg. 331). Cabinet d'architecture et de conception spatiale à l'Île Maurice pour clients locaux et investisseurs internationaux (Réunion, Afrique du Sud, Rodrigues) : villas, PDS/IRS, permis de construire, et suivi de chantier à distance.",
+    "description": "Senior Registered Architect in Mauritius (PAC Reg. 331). Cabinet d'architecture et de conception spatiale à l'Île Maurice : villas, permis de construire, et suivi de chantier.",
+    "knowsAbout": [
+      "Building and Land Use Permit (BLP)",
+      "Permis de Construire",
+      "House Plan Design",
+      "Master Planning Mauritius",
+      "Villa Design",
+      "Construction Management"
+    ],
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "MU",
@@ -59,8 +73,6 @@
     "areaServed": [
       { "@type": "Country", "name": "Mauritius" },
       { "@type": "AdministrativeArea", "name": "Rodrigues" },
-      { "@type": "Country", "name": "Reunion Island" },
-      { "@type": "Country", "name": "South Africa" },
       { "@type": "AdministrativeArea", "name": "Riviere du Rempart District" },
       { "@type": "AdministrativeArea", "name": "Pamplemousses District" },
       { "@type": "AdministrativeArea", "name": "Port Louis District" },
@@ -79,14 +91,14 @@
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Master Planning & Villa Design for Foreign Investors"
+            "name": "Master Planning & Villa Design"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Remote Project Management & Site Supervision"
+            "name": "Project Management & Site Supervision"
           }
         },
         {
@@ -288,6 +300,43 @@
       outline-offset: 4px;
     }
 
+    /* END-OF-VIDEO OVERLAY BUTTON */
+    .video-end-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(5, 5, 5, 0.85);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+    }
+    .video-end-overlay h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+      font-weight: 400;
+    }
+    .btn-next-video {
+      padding: 10px 20px;
+      background: var(--accent);
+      color: var(--black);
+      border: none;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .btn-next-video:hover {
+      transform: scale(1.05);
+      background: #ffffff;
+    }
+
     .scroll-hint {
       display: flex;
       flex-direction: column;
@@ -451,7 +500,7 @@
       color: var(--accent);
     }
 
-    /* TEAM 3:4 PORTRAIT PHOTO GRID */
+    /* TEAM 3:4 PORTRAIT PHOTO GRID (OPTIMIZED FOR MOBILE SIZING) */
     .team-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -468,6 +517,8 @@
     .team-card:hover { transform: translateY(-2px); border-color: var(--accent); }
     .team-img-wrapper {
       width: 100%;
+      max-width: 260px;
+      margin: 0 auto;
       aspect-ratio: 3 / 4;
       background: #1a1a1a;
       overflow: hidden;
@@ -519,7 +570,7 @@
     .type-card-icon { font-size: 1rem; color: var(--accent); flex-shrink: 0; }
     .type-card-name { font-size: 0.9rem; font-weight: 500; color: var(--text); }
 
-    /* VIDEO ARCHIVE SECTION */
+    /* SCROLLABLE VIDEO ARCHIVE ROW */
     .video-archive-section {
       background: var(--surface);
       border-top: 1px solid var(--border);
@@ -530,12 +581,28 @@
       margin: 0 auto;
       padding: 4rem 1.5rem;
     }
-    .archive-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    .archive-scroll-container {
+      display: flex;
       gap: 1.5rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 1rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) var(--surface);
+    }
+    .archive-scroll-container::-webkit-scrollbar {
+      height: 6px;
+    }
+    .archive-scroll-container::-webkit-scrollbar-track {
+      background: var(--surface);
+    }
+    .archive-scroll-container::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 3px;
     }
     .archive-item {
+      flex: 0 0 320px;
+      scroll-snap-align: start;
       background: var(--black);
       border: 1px solid var(--border);
       border-radius: 6px;
@@ -543,6 +610,16 @@
       transition: transform 0.3s, border-color 0.3s;
     }
     .archive-item:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .archive-title {
+      padding: 0.8rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
     .profile-footer {
       text-align: center;
@@ -562,6 +639,7 @@
       .services-grid, .type-cards, .team-grid { grid-template-columns: 1fr; gap: 0.85rem; }
       .brand-slogan { font-size: 1rem; }
       .brand-identity h1 { font-size: 1.5rem; }
+      .team-img-wrapper { max-width: 220px; }
     }
   </style>
 </head>
@@ -591,14 +669,20 @@
       </div>
     </div>
 
-    <!-- MAIN HERO VIDEO: HARDCODED PRELOAD="NONE" FOR MAXIMUM SPEED -->
+    <!-- MAIN HERO VIDEO (#t=2 loads frame at 2 seconds as thumbnail) -->
     <div class="video-section-wrapper">
       <div class="video-wrapper">
-        <video id="main-video" muted playsinline preload="none" controlsList="nodownload">
-          <source src="video2.mp4" type="video/mp4">
+        <video id="main-video" muted playsinline preload="metadata" controlsList="nodownload">
+          <source src="video2.mp4#t=2" type="video/mp4">
           Your browser does not support the video tag.
         </video>
         <button type="button" class="custom-play-btn" id="main-play-btn" aria-label="Play introduction video"></button>
+        
+        <!-- End of Video Overlay -->
+        <div class="video-end-overlay" id="main-video-end">
+          <h4>Designing for Better Living</h4>
+          <button type="button" class="btn-next-video" id="main-next-btn">Play Next Video ➔</button>
+        </div>
       </div>
     </div>
 
@@ -611,11 +695,7 @@
   <section class="section" id="profile">
     <div class="section-label">Profile</div>
     <p class="profile-text">
-      Senior Registered Architect (PAC Reg. No. 331) with over 20 years of international and local experience
-      across residential, commercial, institutional, industrial, and landscape projects.
-      Specializing in full-service architectural management for local clients and international investors
-      (South Africa, Réunion Island, Rodrigues, and Europe)&mdash;offering complete remote project monitoring, 3D visualization,
-      and local regulatory approval handling to turn spatial visions into compliant, enduring realities.
+      Senior Registered Architect (PAC Reg. No. 331) with over 20 years of international and local experience across residential, commercial, institutional, industrial and landscape projects. Providing comprehensive architectural services to local clients and international investors, from initial concept and design development through regulatory approvals, construction documentation, contract administration and site supervision. Combining design vision, technical precision and local regulatory expertise to transform ideas into compliant, functional and enduring built environments.
     </p>
   </section>
 
@@ -719,7 +799,7 @@
   <section class="section" id="team">
     <div class="section-label">Team</div>
     <p class="team-text">
-      For massive and multi-disciplinary developments, I lead an integrated project consortium alongside key strategic partners: 
+      For massive and multi-disciplinary developments, we lead an integrated project consortium alongside key strategic partners: 
       <strong>Shelter Studio</strong> with Mr. Arshaad KHODABUCCUS, Architect HMONP, Director; 
       and <strong>Beauhome Studio Ltd</strong> with Mr. Abdel SOODHOO, Lead Interior Designer, Director&mdash;providing complete turnkey design-build capability for large-scale operations.
     </p>
@@ -761,17 +841,50 @@
   <div class="video-archive-section" id="archive">
     <div class="video-archive-inner">
       <div class="section-label">Video Archive &amp; Insights</div>
-      <div class="archive-grid">
+      <div class="archive-scroll-container">
         
-        <!-- Archive Item: video1.mp4 -->
+        <!-- Video 1 -->
         <div class="archive-item">
           <div class="video-wrapper">
-            <video class="archive-video-thumb" id="archive-video-1" muted playsinline preload="none" controlsList="nodownload">
-              <source src="video1.mp4" type="video/mp4">
-              Your browser does not support the video tag.
+            <video class="archive-video-thumb" id="archive-video-1" muted playsinline preload="metadata" controlsList="nodownload">
+              <source src="video1.mp4#t=2" type="video/mp4">
             </video>
-            <button type="button" class="custom-play-btn archive-play-btn" data-target="archive-video-1" aria-label="Play archive video 1"></button>
+            <button type="button" class="custom-play-btn archive-play-btn" data-target="archive-video-1" aria-label="Play video"></button>
           </div>
+          <div class="archive-title">The Vision of Architecture</div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="archive-item">
+          <div class="video-wrapper">
+            <video class="archive-video-thumb" id="archive-video-2" muted playsinline preload="metadata" controlsList="nodownload">
+              <source src="video2.mp4#t=2" type="video/mp4">
+            </video>
+            <button type="button" class="custom-play-btn archive-play-btn" data-target="archive-video-2" aria-label="Play video"></button>
+          </div>
+          <div class="archive-title">Designing for Better Living</div>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="archive-item">
+          <div class="video-wrapper">
+            <video class="archive-video-thumb" id="archive-video-3" muted playsinline preload="metadata" controlsList="nodownload">
+              <source src="video3.mp4#t=2" type="video/mp4">
+            </video>
+            <button type="button" class="custom-play-btn archive-play-btn" data-target="archive-video-3" aria-label="Play video"></button>
+          </div>
+          <div class="archive-title">The Experience of Interior Spaces</div>
+        </div>
+
+        <!-- Video 4 -->
+        <div class="archive-item">
+          <div class="video-wrapper">
+            <video class="archive-video-thumb" id="archive-video-4" muted playsinline preload="metadata" controlsList="nodownload">
+              <source src="video4.mp4#t=2" type="video/mp4">
+            </video>
+            <button type="button" class="custom-play-btn archive-play-btn" data-target="archive-video-4" aria-label="Play video"></button>
+          </div>
+          <div class="archive-title">Land Development &amp; Feasibility</div>
         </div>
 
       </div>
@@ -783,78 +896,103 @@
     <div class="reg-line">Republic of Mauritius</div>
   </footer>
 
-  <!-- UNIVERSAL PLAYBACK SCRIPT (COMPATIBLE WITH FACEBOOK & IN-APP BROWSERS) -->
+  <!-- UNIVERSAL PLAYBACK SCRIPT -->
   <script>
-    // Hero Video Control
-    const mainVideo = document.getElementById('main-video');
-    const mainPlayBtn = document.getElementById('main-play-btn');
+    document.addEventListener('DOMContentLoaded', function() {
+      const mainVideo = document.getElementById('main-video');
+      const mainPlayBtn = document.getElementById('main-play-btn');
+      const mainEndOverlay = document.getElementById('main-video-end');
+      const mainNextBtn = document.getElementById('main-next-btn');
+      let mainHasStarted = false;
 
-    function playMainVideo() {
-      mainVideo.muted = false;
-      mainVideo.controls = true;
-      mainPlayBtn.style.display = 'none';
+      // Play Hero Video with Sound from 0:00
+      function playMainVideo() {
+        if (!mainHasStarted) {
+          mainVideo.currentTime = 0;
+          mainHasStarted = true;
+        }
+        mainVideo.muted = false;
+        mainVideo.controls = true;
+        mainPlayBtn.style.display = 'none';
+        mainEndOverlay.style.display = 'none';
 
-      var playPromise = mainVideo.play();
-      if (playPromise !== undefined) {
-        playPromise.then(function() {
+        mainVideo.play().then(() => {
           if (window.goatcounter) {
-            window.goatcounter.count({
-              path: 'video-play-hero',
-              title: 'Video Play: Hero Video',
-              event: true
-            });
+            window.goatcounter.count({ path: 'video-play-hero', title: 'Video Play: Hero Video', event: true });
           }
-        }).catch(function(error) {
+        }).catch(() => {
           mainVideo.controls = true;
         });
       }
-    }
 
-    mainPlayBtn.addEventListener('click', playMainVideo);
-    mainVideo.addEventListener('click', playMainVideo);
+      mainPlayBtn.addEventListener('click', playMainVideo);
+      mainVideo.addEventListener('click', () => { if (mainVideo.paused) playMainVideo(); });
 
-    mainVideo.addEventListener('play', function() {
-      mainPlayBtn.style.display = 'none';
-      mainVideo.controls = true;
-    });
+      // When Hero Video Ends
+      mainVideo.addEventListener('ended', function() {
+        mainVideo.controls = false;
+        mainEndOverlay.style.display = 'flex';
+        mainHasStarted = false;
+      });
 
-    // Archive Video Controls
-    document.querySelectorAll('.archive-play-btn').forEach(function(btn) {
-      btn.addEventListener('click', function(e) {
-        var targetId = e.target.getAttribute('data-target');
-        var archiveVideo = document.getElementById(targetId);
-        
-        archiveVideo.muted = false;
-        archiveVideo.controls = true;
-        e.target.style.display = 'none';
-
-        var playPromise = archiveVideo.play();
-        if (playPromise !== undefined) {
-          playPromise.then(function() {
-            if (window.goatcounter) {
-              window.goatcounter.count({
-                path: 'video-play-' + targetId,
-                title: 'Video Play: ' + targetId,
-                event: true
-              });
-            }
-          }).catch(function(err) {
-            archiveVideo.controls = true;
-          });
+      // Next Video Action: Scroll down and immediately start Video 1
+      mainNextBtn.addEventListener('click', function() {
+        mainEndOverlay.style.display = 'none';
+        const firstArchiveVid = document.getElementById('archive-video-1');
+        if (firstArchiveVid) {
+          document.getElementById('archive').scrollIntoView({ behavior: 'smooth' });
+          firstArchiveVid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          const firstBtn = firstArchiveVid.closest('.video-wrapper').querySelector('.archive-play-btn');
+          setTimeout(() => startArchiveVideo(firstArchiveVid, firstBtn), 450);
         }
       });
-    });
 
-    document.querySelectorAll('.archive-video-thumb').forEach(function(vid) {
-      vid.addEventListener('click', function() {
-        if (vid.paused) {
-          vid.muted = false;
-          vid.controls = true;
-          var btn = vid.parentElement.querySelector('.archive-play-btn');
-          if (btn) btn.style.display = 'none';
-          vid.play();
-        }
+      // Archive Videos Playback & Sequence Handling
+      const archiveVideos = document.querySelectorAll('.archive-video-thumb');
+      
+      archiveVideos.forEach((vid, index) => {
+        const wrapper = vid.closest('.video-wrapper');
+        const playBtn = wrapper.querySelector('.archive-play-btn');
+        vid.dataset.started = 'false';
+
+        playBtn.addEventListener('click', function() {
+          startArchiveVideo(vid, playBtn);
+        });
+
+        vid.addEventListener('click', function() {
+          if (vid.paused) startArchiveVideo(vid, playBtn);
+        });
+
+        // Auto-advance to next archive video when current one finishes
+        vid.addEventListener('ended', function() {
+          vid.controls = false;
+          vid.dataset.started = 'false';
+          const nextVid = archiveVideos[index + 1];
+          if (nextVid) {
+            nextVid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            const nextBtn = nextVid.closest('.video-wrapper').querySelector('.archive-play-btn');
+            setTimeout(() => startArchiveVideo(nextVid, nextBtn), 500);
+          }
+        });
       });
+
+      function startArchiveVideo(vidElement, btnElement) {
+        if (vidElement.dataset.started !== 'true') {
+          vidElement.currentTime = 0;
+          vidElement.dataset.started = 'true';
+        }
+        vidElement.muted = false;
+        vidElement.controls = true;
+        if (btnElement) btnElement.style.display = 'none';
+
+        vidElement.play().then(() => {
+          if (window.goatcounter) {
+            window.goatcounter.count({ path: 'video-play-' + vidElement.id, title: 'Video Play: ' + vidElement.id, event: true });
+          }
+        }).catch(() => {
+          vidElement.controls = true;
+        });
+      }
     });
   </script>
 
