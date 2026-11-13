@@ -669,11 +669,11 @@
       </div>
     </div>
 
-    <!-- MAIN HERO VIDEO -->
+    <!-- MAIN HERO VIDEO (#t=2 loads frame at 2 seconds as thumbnail) -->
     <div class="video-section-wrapper">
       <div class="video-wrapper">
-        <video id="main-video" muted playsinline preload="metadata" poster="hero-thumb.jpg" controlsList="nodownload">
-          <source src="video2.mp4" type="video/mp4">
+        <video id="main-video" muted playsinline preload="metadata" controlsList="nodownload">
+          <source src="video2.mp4#t=2" type="video/mp4">
           Your browser does not support the video tag.
         </video>
         <button type="button" class="custom-play-btn" id="main-play-btn" aria-label="Play introduction video"></button>
@@ -846,8 +846,8 @@
         <!-- Video 1 -->
         <div class="archive-item">
           <div class="video-wrapper">
-            <video class="archive-video-thumb" id="archive-video-1" muted playsinline preload="metadata" poster="thumb1.jpg" controlsList="nodownload">
-              <source src="video1.mp4" type="video/mp4">
+            <video class="archive-video-thumb" id="archive-video-1" muted playsinline preload="metadata" controlsList="nodownload">
+              <source src="video1.mp4#t=2" type="video/mp4">
             </video>
             <button type="button" class="custom-play-btn archive-play-btn" data-target="archive-video-1" aria-label="Play video"></button>
           </div>
@@ -857,8 +857,8 @@
         <!-- Video 2 -->
         <div class="archive-item">
           <div class="video-wrapper">
-            <video class="archive-video-thumb" id="archive-video-2" muted playsinline preload="metadata" poster="hero-thumb.jpg" controlsList="nodownload">
-              <source src="video2.mp4" type="video/mp4">
+            <video class="archive-video-thumb" id="archive-video-2" muted playsinline preload="metadata" controlsList="nodownload">
+              <source src="video2.mp4#t=2" type="video/mp4">
             </video>
             <button type="button" class="custom-play-btn archive-play-btn" data-target="archive-video-2" aria-label="Play video"></button>
           </div>
@@ -868,8 +868,8 @@
         <!-- Video 3 -->
         <div class="archive-item">
           <div class="video-wrapper">
-            <video class="archive-video-thumb" id="archive-video-3" muted playsinline preload="metadata" poster="thumb3.jpg" controlsList="nodownload">
-              <source src="video3.mp4" type="video/mp4">
+            <video class="archive-video-thumb" id="archive-video-3" muted playsinline preload="metadata" controlsList="nodownload">
+              <source src="video3.mp4#t=2" type="video/mp4">
             </video>
             <button type="button" class="custom-play-btn archive-play-btn" data-target="archive-video-3" aria-label="Play video"></button>
           </div>
@@ -879,8 +879,8 @@
         <!-- Video 4 -->
         <div class="archive-item">
           <div class="video-wrapper">
-            <video class="archive-video-thumb" id="archive-video-4" muted playsinline preload="metadata" poster="thumb4.jpg" controlsList="nodownload">
-              <source src="video4.mp4" type="video/mp4">
+            <video class="archive-video-thumb" id="archive-video-4" muted playsinline preload="metadata" controlsList="nodownload">
+              <source src="video4.mp4#t=2" type="video/mp4">
             </video>
             <button type="button" class="custom-play-btn archive-play-btn" data-target="archive-video-4" aria-label="Play video"></button>
           </div>
@@ -903,9 +903,14 @@
       const mainPlayBtn = document.getElementById('main-play-btn');
       const mainEndOverlay = document.getElementById('main-video-end');
       const mainNextBtn = document.getElementById('main-next-btn');
+      let mainHasStarted = false;
 
-      // Play Hero Video with Sound
+      // Play Hero Video with Sound from 0:00
       function playMainVideo() {
+        if (!mainHasStarted) {
+          mainVideo.currentTime = 0;
+          mainHasStarted = true;
+        }
         mainVideo.muted = false;
         mainVideo.controls = true;
         mainPlayBtn.style.display = 'none';
@@ -921,21 +926,24 @@
       }
 
       mainPlayBtn.addEventListener('click', playMainVideo);
-      mainVideo.addEventListener('click', () => { if(mainVideo.paused) playMainVideo(); });
+      mainVideo.addEventListener('click', () => { if (mainVideo.paused) playMainVideo(); });
 
       // When Hero Video Ends
       mainVideo.addEventListener('ended', function() {
         mainVideo.controls = false;
         mainEndOverlay.style.display = 'flex';
+        mainHasStarted = false;
       });
 
-      // Next Video Action
+      // Next Video Action: Scroll down and immediately start Video 1
       mainNextBtn.addEventListener('click', function() {
         mainEndOverlay.style.display = 'none';
         const firstArchiveVid = document.getElementById('archive-video-1');
         if (firstArchiveVid) {
           document.getElementById('archive').scrollIntoView({ behavior: 'smooth' });
           firstArchiveVid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          const firstBtn = firstArchiveVid.closest('.video-wrapper').querySelector('.archive-play-btn');
+          setTimeout(() => startArchiveVideo(firstArchiveVid, firstBtn), 450);
         }
       });
 
@@ -945,6 +953,7 @@
       archiveVideos.forEach((vid, index) => {
         const wrapper = vid.closest('.video-wrapper');
         const playBtn = wrapper.querySelector('.archive-play-btn');
+        vid.dataset.started = 'false';
 
         playBtn.addEventListener('click', function() {
           startArchiveVideo(vid, playBtn);
@@ -957,6 +966,7 @@
         // Auto-advance to next archive video when current one finishes
         vid.addEventListener('ended', function() {
           vid.controls = false;
+          vid.dataset.started = 'false';
           const nextVid = archiveVideos[index + 1];
           if (nextVid) {
             nextVid.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -967,6 +977,10 @@
       });
 
       function startArchiveVideo(vidElement, btnElement) {
+        if (vidElement.dataset.started !== 'true') {
+          vidElement.currentTime = 0;
+          vidElement.dataset.started = 'true';
+        }
         vidElement.muted = false;
         vidElement.controls = true;
         if (btnElement) btnElement.style.display = 'none';
