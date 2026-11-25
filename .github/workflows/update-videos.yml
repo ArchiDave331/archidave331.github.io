@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'video*.mp4'
+      - '*.mp4'
   workflow_dispatch:
 
 permissions:
@@ -26,30 +26,21 @@ jobs:
           import os
           import re
 
-          # Find video1.mp4, video2.mp4, video3.mp4... in the same folder
-          def video_sort_key(path):
-              name = os.path.basename(path)
-              match = re.search(r'(\d+)', name)
-              return (int(match.group(1)) if match else 999999, name)
-
-          files = sorted(glob.glob('video*.mp4'), key=video_sort_key)
+          files = sorted(glob.glob('*.mp4'))
           if not files:
-              raise SystemExit("No video*.mp4 files found.")
+              raise SystemExit("No .mp4 files found.")
 
-          default_titles = {
-              "video1.mp4": "The Vision of Architecture",
-              "video2.mp4": "Designing for Better Living",
-              "video3.mp4": "The Experience of Interior Spaces",
-              "video4.mp4": "Land Development & Feasibility",
-              "video5.mp4": "From Land to Vision",
+          custom_titles = {
+              # Optional: add exact overrides here if needed, e.g.:
+              # "The Vision of Architecture.mp4": "The Vision of Architecture",
           }
 
           videos = []
           for f in files:
               filename = os.path.basename(f)
               stem = os.path.splitext(filename)[0]
-              fallback_title = re.sub(r'([a-zA-Z]+)(\d+)', r'\1 \2', stem).replace('-', ' ').replace('_', ' ').title()
-              title = default_titles.get(filename, fallback_title)
+              fallback_title = re.sub(r'\s+', ' ', stem.replace('-', ' ').replace('_', ' ')).strip().title()
+              title = custom_titles.get(filename, fallback_title)
               videos.append({"src": filename, "title": title})
 
           html_path = "Propto.html" if os.path.exists("Propto.html") else "index.html"
