@@ -879,9 +879,19 @@
       mainOverlayTitle.textContent = featuredVideo.title;
       mainVideo.load();
 
+      function pauseOtherVideos(activeVideo) {
+        document.querySelectorAll('video').forEach((vid) => {
+          if (vid !== activeVideo && !vid.paused) {
+            vid.pause();
+          }
+        });
+      }
+
       let mainHasStarted = false;
 
       function playMainVideo() {
+        pauseOtherVideos(mainVideo);
+
         if (!mainHasStarted) {
           mainVideo.currentTime = 0;
           mainHasStarted = true;
@@ -968,6 +978,8 @@
       });
 
       function startArchiveVideo(vidElement, btnElement) {
+        pauseOtherVideos(vidElement);
+
         if (vidElement.dataset.started !== 'true') {
           vidElement.currentTime = 0;
           vidElement.dataset.started = 'true';
@@ -989,3 +1001,4 @@
 
 </body>
 </html>
+```[cite: 4]
