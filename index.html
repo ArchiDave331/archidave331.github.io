@@ -991,13 +991,13 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
 
-      // List of your video inventory (auto-updated by GitHub Actions)
+      // List of your video inventory
       const masterVideos = [
-        { src: "Designing for Better Living.mp4", title: "Designing for Better Living" },
-        { src: "From Land to Vision.mp4", title: "From Land to Vision" },
-        { src: "Land Development & Feasibility.mp4", title: "Land Development & Feasibility" },
-        { src: "The Experience of Interior Spaces.mp4", title: "The Experience of Interior Spaces" },
-        { src: "TheVisionofArchitecture.mp4", title: "TheVisionofArchitecture" }
+        { src: 'video1.mp4', title: 'The Vision of Architecture' },
+        { src: 'video2.mp4', title: 'Designing for Better Living' },
+        { src: 'video3.mp4', title: 'The Experience of Interior Spaces' },
+        { src: 'TheExperienceofInteriorSpaces.mp4', title: 'Land Development & Feasibility' }
+        { src: 'The Vision of Architecture.mp4', title: 'The Vision of Architecture' }
       ];
 
       // Shuffle/pick a random video for the main hero section on page load
@@ -1011,7 +1011,7 @@
       const mainNextBtn = document.getElementById('main-next-btn');
       const mainOverlayTitle = document.getElementById('main-overlay-title');
 
-      mainSource.src = encodeURI(featuredVideo.src) + '#t=2';
+      mainSource.src = featuredVideo.src + '#t=2';
       mainOverlayTitle.textContent = featuredVideo.title;
       mainVideo.load();
 
@@ -1079,7 +1079,7 @@
         item.innerHTML = `
           <div class="video-wrapper">
             <video class="archive-video-thumb" id="archive-video-${index}" muted playsinline preload="metadata" controlsList="nodownload">
-              <source src="${encodeURI(vidData.src)}#t=2" type="video/mp4">
+              <source src="${vidData.src}#t=2" type="video/mp4">
             </video>
             <button type="button" class="custom-play-btn archive-play-btn" data-target="archive-video-${index}" aria-label="Play video"></button>
           </div>
@@ -1145,18 +1145,6 @@
           vidElement.controls = true;
         });
       }
-
-      // Pause all other videos when any video starts playing
-      const allVideos = document.querySelectorAll('video');
-      allVideos.forEach((currentVideo) => {
-        currentVideo.addEventListener('play', () => {
-          allVideos.forEach((otherVideo) => {
-            if (otherVideo !== currentVideo && !otherVideo.paused) {
-              otherVideo.pause();
-            }
-          });
-        });
-      });
 
     });
   </script>
