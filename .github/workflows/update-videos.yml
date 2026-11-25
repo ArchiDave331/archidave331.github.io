@@ -41,6 +41,7 @@ jobs:
               "video2.mp4": "Designing for Better Living",
               "video3.mp4": "The Experience of Interior Spaces",
               "video4.mp4": "Land Development & Feasibility",
+              "video5.mp4": "From Land to Vision",
           }
 
           videos = []
