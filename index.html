@@ -991,14 +991,18 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
 
-      // List of your video inventory
+      // List of your video inventory (auto-updated by GitHub Actions)
       const masterVideos = [
-        { src: "Designing for Better Living.mp4", title: "Designing For Better Living" },
-        { src: "From Land to Vision.mp4", title: "From Land To Vision" },
-        { src: "Land Development & Feasibility.mp4", title: "Land Development & Feasibility" },
-        { src: "The Experience of Interior Spaces.mp4", title: "The Experience Of Interior Spaces" },
-        { src: "The Vision of Architecture.mp4", title: "The Vision Of Architecture" }
+        { src: 'The Vision of Architecture.mp4', title: 'The Vision of Architecture' },
+        { src: 'Designing for Better Living.mp4', title: 'Designing for Better Living' },
+        { src: 'The Experience of Interior Spaces.mp4', title: 'The Experience of Interior Spaces' },
+        { src: 'Land Development & Feasibility.mp4', title: 'Land Development & Feasibility' },
+        { src: 'From Land to Vision.mp4', title: 'From Land to Vision' }
       ];
+
+      function safeVideoUrl(filename) {
+        return encodeURI(filename) + '#t=2';
+      }
 
       // Shuffle/pick a random video for the main hero section on page load
       const randomIndex = Math.floor(Math.random() * masterVideos.length);
@@ -1011,7 +1015,7 @@
       const mainNextBtn = document.getElementById('main-next-btn');
       const mainOverlayTitle = document.getElementById('main-overlay-title');
 
-      mainSource.src = featuredVideo.src + '#t=2';
+      mainSource.src = safeVideoUrl(featuredVideo.src);
       mainOverlayTitle.textContent = featuredVideo.title;
       mainVideo.load();
 
@@ -1079,13 +1083,14 @@
         item.innerHTML = `
           <div class="video-wrapper">
             <video class="archive-video-thumb" id="archive-video-${index}" muted playsinline preload="metadata" controlsList="nodownload">
-              <source src="${vidData.src}#t=2" type="video/mp4">
+              <source src="${safeVideoUrl(vidData.src)}" type="video/mp4">
             </video>
             <button type="button" class="custom-play-btn archive-play-btn" data-target="archive-video-${index}" aria-label="Play video"></button>
           </div>
-          <div class="archive-title">${vidData.title}</div>
+          <div class="archive-title"></div>
         `;
 
+        item.querySelector('.archive-title').textContent = vidData.title;
         archiveContainer.appendChild(item);
       });
 
