@@ -28,7 +28,8 @@ jobs:
 
           files = sorted(glob.glob('*.mp4'))
           if not files:
-              raise SystemExit("No .mp4 files found.")
+              print("No .mp4 files found in root folder; leaving masterVideos unchanged.")
+              raise SystemExit(0)
 
           custom_titles = {
               # Optional: override any exact title here if needed, e.g.:
@@ -40,7 +41,6 @@ jobs:
               filename = os.path.basename(f)
               stem = os.path.splitext(filename)[0]
               fallback_title = re.sub(r'\s+', ' ', stem.replace('-', ' ').replace('_', ' ')).strip()
-              # Only auto-title-case if the filename is all lowercase
               if fallback_title.islower():
                   fallback_title = fallback_title.title()
               title = custom_titles.get(filename, fallback_title)
@@ -58,7 +58,7 @@ jobs:
           replacement = "\n".join(lines)
 
           new_content, count = re.subn(
-              r"      const masterVideos = \[[\s\S]*?\n\];",
+              r"[ \t]*const masterVideos = \[[\s\S]*?\n[ \t]*\];",
               replacement,
               content,
               count=1
@@ -68,6 +68,7 @@ jobs:
 
           with open(html_path, "w", encoding="utf-8") as fh:
               fh.write(new_content)
+          print(f"Updated {html_path} with {len(videos)} video(s).")
           EOF
 
       - name: Commit and push if updated
