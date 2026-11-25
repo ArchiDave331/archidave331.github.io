@@ -1,24 +1,4 @@
-name: Auto-update videos list
-
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - '*.mp4'
-  workflow_dispatch:
-
-permissions:
-  contents: write
-
-jobs:
-  update-videos:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Update masterVideos in HTML file
+- name: Update masterVideos in HTML file
         run: |
           python3 - << 'EOF'
           import glob
@@ -32,51 +12,42 @@ jobs:
               raise SystemExit(0)
 
           custom_titles = {
-              # Optional: override any exact title here if needed, e.g.:
               # "From Land to Vision.mp4": "From Land to Vision",
           }
 
           videos = []
-          for f in files:
-              filename = os.path.basename(f)
-              stem = os.path.splitext(filename)[0]
-              fallback_title = re.sub(r'\s+', ' ', stem.replace('-', ' ').replace('_', ' ')).strip()
-              if fallback_title.islower():
-                  fallback_title = fallback_title.title()
-              title = custom_titles.get(filename, fallback_title)
+          for filename in files:
+              stem = os.path.splitext(os.path.basename(filename))[0]
+              title = custom_titles.get(filename, re.sub(r'\s+', ' ', stem).strip())
               videos.append({"src": filename, "title": title})
 
           html_path = "Propto.html" if os.path.exists("Propto.html") else "index.html"
+
           with open(html_path, "r", encoding="utf-8") as fh:
               content = fh.read()
 
           lines = ["      const masterVideos = ["]
-          for i, v in enumerate(videos):
+          for i, video in enumerate(videos):
               comma = "," if i < len(videos) - 1 else ""
-              lines.append(f"        {{ src: {json.dumps(v['src'])}, title: {json.dumps(v['title'])} }}{comma}")
+              lines.append(
+                  f"        {{ src: {json.dumps(video['src'])}, "
+                  f"title: {json.dumps(video['title'])} }}{comma}"
+              )
           lines.append("      ];")
           replacement = "\n".join(lines)
 
           new_content, count = re.subn(
-              r"[ \t]*const masterVideos = \[[\s\S]*?\n[ \t]*\];",
+              r"[ \t]*const masterVideos = \[[\s\S]*?[ \t]*\];",
               replacement,
               content,
               count=1
           )
+
           if count == 0:
               raise SystemExit("Could not find masterVideos array in HTML.")
 
           with open(html_path, "w", encoding="utf-8") as fh:
               fh.write(new_content)
+
           print(f"Updated {html_path} with {len(videos)} video(s).")
           EOF
-
-      - name: Commit and push if updated
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if ! git diff --quiet; then
-            git add -A
-            git commit -m "Auto-update masterVideos list"
-            git push
-          fi
