@@ -1145,6 +1145,18 @@
         });
       }
 
+      // Pause all other videos when any video starts playing
+      const allVideos = document.querySelectorAll('video');
+      allVideos.forEach((currentVideo) => {
+        currentVideo.addEventListener('play', () => {
+          allVideos.forEach((otherVideo) => {
+            if (otherVideo !== currentVideo && !otherVideo.paused) {
+              otherVideo.pause();
+            }
+          });
+        });
+      });
+
     });
   </script>
 
