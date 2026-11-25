@@ -44,9 +44,9 @@
     "@type": "ArchitecturalFirm",
     "name": "David H. Marie-Jeanne — Registered Architect 331",
     "alternateName": [
-      "Architect 331",
-      "Architecte 331",
-      "Architecte Maurice",
+      "Architect 331", 
+      "Architecte 331", 
+      "Architecte Maurice", 
       "BLP Architect Mauritius"
     ],
     "url": "https://archidave331.github.io",
@@ -112,7 +112,7 @@
     }
   }
   </script>
-
+  
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -152,7 +152,7 @@
 
     .hero-container {
       width: 100%;
-      max-width: 480px;
+      max-width: 440px;
       display: flex;
       flex-direction: column;
       gap: 1.25rem;
@@ -170,53 +170,24 @@
       max-width: 380px;
     }
 
-    /* LOGO LOCKUP: ARCHITECT UNCHANGED; ATELIER 331 REDUCED AND EDGE-ALIGNED */
     .brand-identity {
-      display: inline-flex;
+      display: flex;
       flex-direction: column;
-      align-items: flex-end;
-      gap: 0.35rem;
-      margin: 0.25rem 0;
+      gap: 4px;
     }
-
     .brand-identity h1 {
-      font-size: 2.25rem;
+      font-size: 1.75rem;
       font-weight: 300;
-      letter-spacing: 0.34em;
-      margin-right: -0.34em;
+      letter-spacing: 5px;
       line-height: 1;
       text-transform: uppercase;
       color: var(--text);
     }
-
-    /* The shared fixed width gives ATELIER and 331 identical left/right edges. */
-    .brand-secondary {
-      width: 4.25rem;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0.15rem;
-    }
-
-    .brand-atelier {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.58rem;
+    .brand-identity .reg-badge {
+      font-size: 1rem;
       font-weight: 400;
-      text-transform: uppercase;
+      letter-spacing: 3px;
       color: var(--text-muted);
-      line-height: 1;
-    }
-
-    .brand-number {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      font-size: 1.65rem;
-      font-weight: 300;
-      color: var(--text-muted);
-      line-height: 1;
     }
 
     .action-group {
@@ -255,7 +226,6 @@
       border-color: rgba(197, 179, 149, 0.3);
       background: linear-gradient(to bottom, #141414, #0d0d0d);
     }
-
     .btn-architectural.whatsapp:hover {
       border-color: var(--accent);
     }
@@ -343,14 +313,12 @@
       z-index: 10;
       backdrop-filter: blur(4px);
     }
-
     .video-end-overlay h4 {
       font-family: 'Playfair Display', serif;
       font-size: 1.1rem;
       color: var(--text);
       font-weight: 400;
     }
-
     .btn-next-video {
       padding: 10px 20px;
       background: var(--accent);
@@ -364,7 +332,6 @@
       cursor: pointer;
       transition: transform 0.2s, background 0.2s;
     }
-
     .btn-next-video:hover {
       transform: scale(1.05);
       background: #ffffff;
@@ -383,7 +350,6 @@
       transition: color 0.2s;
       padding-top: 0.5rem;
     }
-
     .scroll-hint:hover { color: var(--text); }
     .scroll-arrow { font-size: 0.85rem; animation: bounce 2s infinite; }
 
@@ -410,7 +376,6 @@
       align-items: center;
       gap: 1rem;
     }
-
     .section-label::after {
       content: '';
       flex: 1;
@@ -423,19 +388,16 @@
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
-
     .services-inner {
       max-width: 960px;
       margin: 0 auto;
       padding: 4rem 1.5rem;
     }
-
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.25rem;
     }
-
     .service-card {
       padding: 1.5rem;
       border: 1px solid var(--border);
@@ -446,27 +408,13 @@
       gap: 1rem;
       border-radius: 4px;
     }
-
     .service-card:hover {
       border-color: var(--accent);
       background: var(--surface-hover);
       transform: translateY(-2px);
     }
-
-    .service-icon {
-      font-size: 1.1rem;
-      color: var(--accent);
-      flex-shrink: 0;
-      width: 1.5rem;
-      text-align: center;
-    }
-
-    .service-name {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text);
-      line-height: 1.4;
-    }
+    .service-icon { font-size: 1.1rem; color: var(--accent); flex-shrink: 0; width: 1.5rem; text-align: center; }
+    .service-name { font-size: 0.9rem; font-weight: 500; color: var(--text); line-height: 1.4; }
 
     .profile-text, .team-text {
       font-size: 1.05rem;
@@ -478,7 +426,6 @@
     }
 
     .timeline { position: relative; padding-left: 2.5rem; }
-
     .timeline::before {
       content: '';
       position: absolute;
@@ -488,10 +435,8 @@
       width: 1px;
       background: linear-gradient(to bottom, var(--accent), var(--border));
     }
-
     .timeline-item { position: relative; padding-bottom: 3rem; }
     .timeline-item:last-child { padding-bottom: 0; }
-
     .timeline-dot {
       position: absolute;
       left: -2.5rem;
@@ -503,12 +448,10 @@
       border: 2px solid var(--accent);
       transform: translateX(-4.5px);
     }
-
     .timeline-item.current .timeline-dot {
       background: var(--accent);
       box-shadow: 0 0 0 4px rgba(197, 179, 149, 0.15);
     }
-
     .timeline-duration {
       font-size: 0.7rem;
       font-weight: 600;
@@ -517,14 +460,7 @@
       color: var(--accent);
       margin-bottom: 0.3rem;
     }
-
-    .timeline-role {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.1rem;
-    }
-
+    .timeline-role { font-size: 1.05rem; font-weight: 600; color: var(--text); margin-bottom: 0.1rem; }
     .timeline-company {
       font-family: 'Playfair Display', serif;
       font-style: italic;
@@ -532,20 +468,13 @@
       color: var(--text-dim);
       margin-bottom: 0.4rem;
     }
-
-    .timeline-desc {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      font-weight: 300;
-    }
+    .timeline-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; }
 
     .edu-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
     }
-
     .edu-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -554,16 +483,8 @@
       border-radius: 4px;
       transition: transform 0.3s;
     }
-
     .edu-card:hover { transform: translateY(-2px); border-color: var(--border-hover); }
-
-    .edu-degree {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.3rem;
-    }
-
+    .edu-degree { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.3rem; }
     .edu-school {
       font-family: 'Playfair Display', serif;
       font-style: italic;
@@ -571,7 +492,6 @@
       color: var(--text-dim);
       margin-bottom: 0.4rem;
     }
-
     .edu-years {
       font-size: 0.7rem;
       font-weight: 600;
@@ -587,7 +507,6 @@
       gap: 1.5rem;
       margin-top: 2rem;
     }
-
     .team-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -595,9 +514,7 @@
       overflow: hidden;
       transition: transform 0.3s, border-color 0.3s;
     }
-
     .team-card:hover { transform: translateY(-2px); border-color: var(--accent); }
-
     .team-img-wrapper {
       width: 100%;
       max-width: 260px;
@@ -607,51 +524,34 @@
       overflow: hidden;
       position: relative;
     }
-
     .team-img-wrapper img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
-
     .team-info {
       padding: 1.2rem;
       text-align: center;
     }
-
-    .team-name {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.2rem;
-    }
-
-    .team-title {
-      font-size: 0.75rem;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
+    .team-name { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
+    .team-title { font-size: 0.75rem; color: var(--accent); letter-spacing: 0.05em; text-transform: uppercase; }
 
     .project-types-section {
       background: var(--surface);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
-
     .project-types-inner {
       max-width: 960px;
       margin: 0 auto;
       padding: 4rem 1.5rem;
     }
-
     .type-cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1.25rem;
     }
-
     .type-card {
       padding: 1.2rem 1.5rem;
       border: 1px solid var(--border);
@@ -662,24 +562,13 @@
       gap: 1rem;
       border-radius: 4px;
     }
-
     .type-card:hover {
       border-color: var(--accent);
       background: var(--surface-hover);
       transform: translateY(-2px);
     }
-
-    .type-card-icon {
-      font-size: 1rem;
-      color: var(--accent);
-      flex-shrink: 0;
-    }
-
-    .type-card-name {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text);
-    }
+    .type-card-icon { font-size: 1rem; color: var(--accent); flex-shrink: 0; }
+    .type-card-name { font-size: 0.9rem; font-weight: 500; color: var(--text); }
 
     /* SCROLLABLE VIDEO ARCHIVE ROW */
     .video-archive-section {
@@ -687,13 +576,11 @@
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
-
     .video-archive-inner {
       max-width: 960px;
       margin: 0 auto;
       padding: 4rem 1.5rem;
     }
-
     .archive-scroll-container {
       display: flex;
       gap: 1.5rem;
@@ -703,15 +590,16 @@
       scrollbar-width: thin;
       scrollbar-color: var(--accent) var(--surface);
     }
-
-    .archive-scroll-container::-webkit-scrollbar { height: 6px; }
-    .archive-scroll-container::-webkit-scrollbar-track { background: var(--surface); }
-
+    .archive-scroll-container::-webkit-scrollbar {
+      height: 6px;
+    }
+    .archive-scroll-container::-webkit-scrollbar-track {
+      background: var(--surface);
+    }
     .archive-scroll-container::-webkit-scrollbar-thumb {
       background: var(--accent);
       border-radius: 3px;
     }
-
     .archive-item {
       flex: 0 0 320px;
       scroll-snap-align: start;
@@ -721,9 +609,7 @@
       overflow: hidden;
       transition: transform 0.3s, border-color 0.3s;
     }
-
     .archive-item:hover { transform: translateY(-2px); border-color: var(--accent); }
-
     .archive-title {
       padding: 0.8rem 1rem;
       font-size: 0.85rem;
@@ -743,26 +629,20 @@
       text-transform: uppercase;
       color: var(--text-dim);
     }
-
     .profile-footer .reg-line { margin-top: 0.4rem; color: var(--accent); }
 
     @media (max-width: 900px) {
       .services-grid, .type-cards, .team-grid { grid-template-columns: repeat(2, 1fr); }
     }
-
     @media (max-width: 640px) {
       html { font-size: 15px; }
       .services-grid, .type-cards, .team-grid { grid-template-columns: 1fr; gap: 0.85rem; }
       .brand-slogan { font-size: 1rem; }
-      .brand-identity h1 { font-size: 1.75rem; letter-spacing: 0.3em; margin-right: -0.3em; }
-      .brand-secondary { width: 3rem; }
-      .brand-atelier { font-size: 0.535rem; }
-      .brand-number { font-size: 1.25rem; }
+      .brand-identity h1 { font-size: 1.5rem; }
       .team-img-wrapper { max-width: 220px; }
     }
   </style>
 </head>
-
 <body>
 
   <header class="hero-section">
@@ -773,21 +653,16 @@
 
       <div class="brand-identity">
         <h1>Architect</h1>
-        <div class="brand-secondary">
-          <div class="brand-atelier"><span>A</span><span>T</span><span>E</span><span>L</span><span>I</span><span>E</span><span>R</span></div>
-          <div class="brand-number"><span>3</span><span>3</span><span>1</span></div>
-        </div>
+        <div class="reg-badge">331</div>
       </div>
 
       <div class="action-group">
         <a href="contact.vcf" class="btn-architectural">
           <span class="btn-icon">＋</span> Add to Contacts
         </a>
-
-        <a href="https://wa.me/23054293170?text=Hello,%20I%20would%20like%20to%20discuss%20an%20architectural%20project%20with%20you" target="_blank" class="btn-architectural whatsapp">
+        <a href="https://wa.me/23054293170?text=Hello,%20I%20would%20like%20to%20discuss%20an%20architectural%20project%20with%20you." target="_blank" class="btn-architectural whatsapp">
           <span class="btn-icon">💬</span> Discuss Your Project (WhatsApp)
         </a>
-
         <a href="mailto:davidhmj@gmail.com" class="btn-architectural">
           <span class="btn-icon">✉️</span> Send an Email
         </a>
@@ -801,9 +676,8 @@
           <source id="main-video-source" src="" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-
         <button type="button" class="custom-play-btn" id="main-play-btn" aria-label="Play introduction video"></button>
-
+        
         <!-- End of Video Overlay -->
         <div class="video-end-overlay" id="main-video-end">
           <h4 id="main-overlay-title">Featured Insight</h4>
@@ -828,7 +702,6 @@
   <div class="services-section">
     <div class="services-inner">
       <div class="section-label">Services</div>
-
       <div class="services-grid">
         <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Master Planning</div></div>
         <div class="service-card"><span class="service-icon">◈</span><div class="service-name">Concept Design</div></div>
@@ -845,7 +718,6 @@
   <div class="project-types-section">
     <div class="project-types-inner">
       <div class="section-label">Project Types</div>
-
       <div class="type-cards">
         <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Residential &amp; Private Villas</div></div>
         <div class="type-card"><span class="type-card-icon">&#9633;</span><div class="type-card-name">Commercial &amp; Retail</div></div>
@@ -859,7 +731,6 @@
 
   <section class="section">
     <div class="section-label">Professional Experience</div>
-
     <div class="timeline">
       <div class="timeline-item current">
         <div class="timeline-dot"></div>
@@ -910,14 +781,12 @@
 
   <section class="section">
     <div class="section-label">Education &amp; Registration</div>
-
     <div class="edu-grid">
       <div class="edu-card">
         <div class="edu-degree">Master of Architecture (M.Arch)</div>
         <div class="edu-school">Peoples&rsquo; Friendship University of Russia (RUDN)</div>
         <div class="edu-years">2002 &ndash; 2004</div>
       </div>
-
       <div class="edu-card">
         <div class="edu-degree">Bachelor of Architecture (B.Arch)</div>
         <div class="edu-school">Peoples&rsquo; Friendship University of Russia (RUDN)</div>
@@ -929,13 +798,11 @@
   <!-- TEAM SECTION -->
   <section class="section" id="team">
     <div class="section-label">Team</div>
-
     <p class="team-text">
-      For massive and multi-disciplinary developments, we lead an integrated project consortium alongside key strategic partners:
-      <strong>Shelter Studio</strong> with Mr. Arshaad KHODABUCCUS, Architect HMONP, Director;
-      and <strong>Beauhome Studio Ltd</strong> with Mr. Abdel SOODHOO, Lead Interior Designer, Director—providing complete turnkey design-build capability for large-scale operations.
+      For massive and multi-disciplinary developments, we lead an integrated project consortium alongside key strategic partners: 
+      <strong>Shelter Studio</strong> with Mr. Arshaad KHODABUCCUS, Architect HMONP, Director; 
+      and <strong>Beauhome Studio Ltd</strong> with Mr. Abdel SOODHOO, Lead Interior Designer, Director&mdash;providing complete turnkey design-build capability for large-scale operations.
     </p>
-
     <div class="team-grid">
       <!-- Team Member 1 -->
       <div class="team-card">
@@ -947,7 +814,6 @@
           <div class="team-title">Architect M.Arch, Director (ARCHITECT 331)</div>
         </div>
       </div>
-
       <!-- Team Member 2 -->
       <div class="team-card">
         <div class="team-img-wrapper">
@@ -958,7 +824,6 @@
           <div class="team-title">Architect HMONP, Director (Shelter Studio)</div>
         </div>
       </div>
-
       <!-- Team Member 3 -->
       <div class="team-card">
         <div class="team-img-wrapper">
@@ -990,7 +855,6 @@
   <!-- DYNAMIC SHUFFLE & PLAYBACK SCRIPT -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-
       // List of your video inventory
       const masterVideos = [
         { src: 'video1.mp4', title: 'The Vision of Architecture' },
@@ -1021,7 +885,6 @@
           mainVideo.currentTime = 0;
           mainHasStarted = true;
         }
-
         mainVideo.muted = false;
         mainVideo.controls = true;
         mainPlayBtn.style.display = 'none';
@@ -1029,11 +892,7 @@
 
         mainVideo.play().then(() => {
           if (window.goatcounter) {
-            window.goatcounter.count({
-              path: 'video-play-hero',
-              title: 'Video Play: Hero Video',
-              event: true
-            });
+            window.goatcounter.count({ path: 'video-play-hero', title: 'Video Play: Hero Video', event: true });
           }
         }).catch(() => {
           mainVideo.controls = true;
@@ -1041,10 +900,7 @@
       }
 
       mainPlayBtn.addEventListener('click', playMainVideo);
-
-      mainVideo.addEventListener('click', () => {
-        if (mainVideo.paused) playMainVideo();
-      });
+      mainVideo.addEventListener('click', () => { if (mainVideo.paused) playMainVideo(); });
 
       mainVideo.addEventListener('ended', function() {
         mainVideo.controls = false;
@@ -1054,15 +910,11 @@
 
       mainNextBtn.addEventListener('click', function() {
         mainEndOverlay.style.display = 'none';
-
         const firstArchiveVid = document.getElementById('archive-video-0');
-
         if (firstArchiveVid) {
           document.getElementById('archive').scrollIntoView({ behavior: 'smooth' });
           firstArchiveVid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
           const firstBtn = firstArchiveVid.closest('.video-wrapper').querySelector('.archive-play-btn');
-
           setTimeout(() => startArchiveVideo(firstArchiveVid, firstBtn), 450);
         }
       });
@@ -1074,7 +926,6 @@
       masterVideos.forEach((vidData, index) => {
         const item = document.createElement('div');
         item.className = 'archive-item';
-
         item.innerHTML = `
           <div class="video-wrapper">
             <video class="archive-video-thumb" id="archive-video-${index}" muted playsinline preload="metadata" controlsList="nodownload">
@@ -1084,38 +935,32 @@
           </div>
           <div class="archive-title">${vidData.title}</div>
         `;
-
         archiveContainer.appendChild(item);
       });
 
       // Archive Playback & Sequence Handling
       const archiveVideos = document.querySelectorAll('.archive-video-thumb');
-
-      archiveVideos.forEach((v, index) => {
-        const wrapper = v.closest('.video-wrapper');
+      
+      archiveVideos.forEach((vid, index) => {
+        const wrapper = vid.closest('.video-wrapper');
         const playBtn = wrapper.querySelector('.archive-play-btn');
-
-        v.dataset.started = 'false';
+        vid.dataset.started = 'false';
 
         playBtn.addEventListener('click', function() {
-          startArchiveVideo(v, playBtn);
+          startArchiveVideo(vid, playBtn);
         });
 
-        v.addEventListener('click', function() {
-          if (v.paused) startArchiveVideo(v, playBtn);
+        vid.addEventListener('click', function() {
+          if (vid.paused) startArchiveVideo(vid, playBtn);
         });
 
-        v.addEventListener('ended', function() {
-          v.controls = false;
-          v.dataset.started = 'false';
-
+        vid.addEventListener('ended', function() {
+          vid.controls = false;
+          vid.dataset.started = 'false';
           const nextVid = archiveVideos[index + 1];
-
           if (nextVid) {
             nextVid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
             const nextBtn = nextVid.closest('.video-wrapper').querySelector('.archive-play-btn');
-
             setTimeout(() => startArchiveVideo(nextVid, nextBtn), 500);
           }
         });
@@ -1126,25 +971,18 @@
           vidElement.currentTime = 0;
           vidElement.dataset.started = 'true';
         }
-
         vidElement.muted = false;
         vidElement.controls = true;
-
         if (btnElement) btnElement.style.display = 'none';
 
         vidElement.play().then(() => {
           if (window.goatcounter) {
-            window.goatcounter.count({
-              path: 'video-play-' + vidElement.id,
-              title: 'Video Play: ' + vidElement.id,
-              event: true
-            });
+            window.goatcounter.count({ path: 'video-play-' + vidElement.id, title: 'Video Play: ' + vidElement.id, event: true });
           }
         }).catch(() => {
           vidElement.controls = true;
         });
       }
-
     });
   </script>
 
