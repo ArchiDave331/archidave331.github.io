@@ -18,6 +18,33 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Make videos web-safe (H.264 + faststart)
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          shopt -s nullglob
+          for f in *.mp4; do
+            size=$(stat -c%s "$f")
+            if [ "$size" -lt 2000 ] && grep -q "git-lfs" "$f"; then
+              echo "::error::$f is a Git LFS pointer, not a real video"
+              continue
+            fi
+            v=$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of csv=p=0 "$f" </dev/null)
+            p=$(ffprobe -v error -select_streams v:0 -show_entries stream=pix_fmt -of csv=p=0 "$f" </dev/null)
+            a=$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of csv=p=0 "$f" </dev/null)
+            if [ "$v" = "h264" ] && [ "$p" = "yuv420p" ] && { [ -z "$a" ] || [ "$a" = "aac" ]; }; then
+              first=$(ffprobe -v trace -i "$f" </dev/null 2>&1 | grep -m1 -oE "type:'(moov|mdat)'" || true)
+              if [ "$first" = "type:'mdat'" ]; then
+                echo "Adding faststart: $f"
+                ffmpeg -nostdin -y -v error -i "$f" -c copy -movflags +faststart "tmp_fix.mp4" && mv "tmp_fix.mp4" "$f"
+              else
+                echo "OK, no change needed: $f"
+              fi
+            else
+              echo "Re-encoding: $f (video=$v pix=$p audio=$a)"
+              ffmpeg -nostdin -y -v error -i "$f" -c:v libx264 -profile:v high -pix_fmt yuv420p -crf 23 -preset medium -c:a aac -b:a 128k -movflags +faststart "tmp_fix.mp4" && mv "tmp_fix.mp4" "$f"
+            fi
+          done
+
       - name: Update masterVideos in HTML file
         run: |
           python3 - << 'EOF'
@@ -87,6 +114,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if ! git diff --quiet; then
             git add -A
-            git commit -m "Auto-update masterVideos list"
+            git commit -m "Auto-update masterVideos list and fix videos"
             git push
           fi
